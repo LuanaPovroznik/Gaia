@@ -1,27 +1,57 @@
 <?php
-    if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
-        header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
-        die( header( 'location: index.php' ) );
-    }
+
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/navigation_bar.style.css">
+        <link rel="stylesheet" href="../css/navigation_bar_style.css">
     </head>
 <body>
-    <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Perfil</a>
-    <a href="#">Meus agendamentos</a>
-    <a href="#">Meus processos</a>
-    <a href="#">Meus agendamentos</a>
-    </div>
-    <div class="topnav">
-        <span style="font-size:30px; color: snow; cursor:pointer" onclick="openNav()">&#9776; GAIA</span>
-    </div>
+    <?php
+            echo '<div id="mySidenav" class="sidenav">';
+            echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
+            echo '<a href="#">Meus agendamentos</a>';
+            echo '<a href="#">Meus processos</a>';
+            echo '<a href="#">Meus agendamentos</a>';
+            echo '<a href="cadastro_vara.php">Nova vara judiciária</a>';
+            echo '</div>';
+            echo '<div class="topnav">';
+                echo '<span class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
+                echo '<div class="dropdown">';
+                    echo '<button class="dropbtn">';
+                        echo '<img class="userAvatar" src="../img/no-image.png" id="myImg">';
+                    echo '</button>';
+                    echo '<div class="dropdown-content">';
+                    echo '<a href="#">Meu perfil</a>';
+                    echo '<a href="logout.php">Sair</a>';
+                    echo '</div>';
+                echo '</div>';  
+            echo '</div>';
+
+
+
+           /* echo '<div id="mySidenav" class="sidenav">';
+            echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
+            echo '<a href="#">Nova vara judiciária</a>';
+            echo '</div>';
+            echo '<div class="topnav">';
+                echo '<span class="test" style="font-size:30px; color: snow; cursor:pointer;" onclick="openNav()">&#9776; GAIA</span>';
+                echo '<div class="dropdown">';
+                    echo '<button class="dropbtn">';
+                        echo '<img class="userAvatar" src="../img/no-image.png" id="myImg">';
+                    echo '</button>';
+                    echo '<div class="dropdown-content">';
+                    echo '<a href="#">Meu perfil</a>';
+                    echo '<a href="logout.php">Sair</a>';
+                    echo '</div>';
+                echo '</div>';  
+            echo '</div>';*/
+        
+
+    ?>
+  
 <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";

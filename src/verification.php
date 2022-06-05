@@ -1,7 +1,7 @@
 <?php 
     session_start();
-    if(!isset($_SESSION["id"]) || !isset($_SESSION["login"])) {
-        header("Location: index.php");
+    if(!isset($_SESSION["id"]) || !isset($_SESSION["usuario"])) {
+        header("Location: index2.php");
         exit;
     }
 ?> 
