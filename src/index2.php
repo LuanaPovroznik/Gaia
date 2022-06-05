@@ -1,3 +1,4 @@
+<?php include 'config.php'; ?>
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -12,7 +13,7 @@
 <div class="container">
     <div class="center">
         <div class="left">
-            <h3>SISTEMA GAIA</h3>
+            <h3>Sistema GAIA</h3>
             <span>
         Buscando facilitar a rotina de advogados no
     </span><br>
@@ -21,7 +22,7 @@
                 jurídica de qualidade.
             </span>
             <br>
-            <h4>Comece agora</h4>
+            <h4>Comece a usar agora</h4>
             <span>
             Entre em contato e realize um orçamento para<br>
         </span>
@@ -37,14 +38,13 @@
         </div>
 
         <div class="right">
-            <form action="#">
+            <form action="index2.php" method="post">
                 <h2 style="font-family: 'Asap Condensed Medium'; font-weight: normal">Entre na sua conta</h2>
-                <input type="text" placeholder="Nome de usuário ou e-mail">
+                <input type="text" placeholder="Nome de usuário" name="nomeUsuarioCliente">
                 <br><br>
-                <input type="password" placeholder="Senha">
+                <input type="password" placeholder="Senha" name="senhaCliente">
                 <br> <br>
-<!--                <input type="submit" value="Cadastre-se" class="registerButton">-->
-                <input type="submit" value="Login" class="loginButton">
+                <input type="submit" value="Login" class="loginButton" name="loginButton">
                 <a href="cadastre_se.php"><p class="registerLink">Não possui conta? Cadastre-se</p></a>
             </form>
             <footer style="margin-top: 45%; font-size: small; font-family: Montserrat, sans-serif; color: darkgrey"><h4>Luana Povroznik & Matheus Portes</h4></footer>
@@ -53,3 +53,25 @@
 </div>
 </body>
 </html>
+
+<?php
+if(@$_REQUEST['loginButton'] == "Login") {
+    @$nomeUsuarioCliente = $_POST["nomeUsuarioCliente"];
+    @$senhaCliente = md5($_POST["senhaCliente"]);
+
+
+    $sql = "SELECT * FROM cliente WHERE usuario = '$nomeUsuarioCliente' AND senha = '$senhaCliente'";
+    $sql2 = "SELECT * FROM funcionario WHERE usuario = '$nomeUsuarioCliente' AND senha = '$senhaCliente'";
+    $result = mysqli_query($con, $sql);
+    $result2 = mysqli_query($con, $sql2);
+
+    if (mysqli_num_rows($result) > 0 || mysqli_num_rows($result2) > 0){
+        header("Location: dashboard.php");
+        exit;
+    } else {
+        header("Location: index2.php");
+        exit;
+    }
+}
+
+?>
