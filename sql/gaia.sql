@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Jun-2022 às 21:47
+-- Tempo de geração: 05-Jun-2022 às 23:50
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -48,6 +48,13 @@ CREATE TABLE `cliente` (
   `senha` varchar(200) NOT NULL,
   `avatar` varchar(180) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `cpf`, `nome`, `usuario`, `senha`, `avatar`) VALUES
+(1, '0000000', 'luana', 'luana', '123', '');
 
 -- --------------------------------------------------------
 
@@ -134,8 +141,8 @@ ALTER TABLE `funcionario`
 --
 ALTER TABLE `processo`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `cliente` (`cliente`),
   ADD KEY `advogado` (`advogado`),
+  ADD KEY `cliente` (`cliente`),
   ADD KEY `vara` (`vara`);
 
 --
@@ -154,6 +161,46 @@ ALTER TABLE `vara`
   ADD PRIMARY KEY (`id`);
 
 --
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `advogado`
+--
+ALTER TABLE `advogado`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `funcionario`
+--
+ALTER TABLE `funcionario`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `processo`
+--
+ALTER TABLE `processo`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `reuniao`
+--
+ALTER TABLE `reuniao`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `vara`
+--
+ALTER TABLE `vara`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
 -- Restrições para despejos de tabelas
 --
 
@@ -167,8 +214,8 @@ ALTER TABLE `advogado`
 -- Limitadores para a tabela `processo`
 --
 ALTER TABLE `processo`
-  ADD CONSTRAINT `processo_ibfk_1` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
-  ADD CONSTRAINT `processo_ibfk_2` FOREIGN KEY (`advogado`) REFERENCES `advogado` (`id`),
+  ADD CONSTRAINT `processo_ibfk_1` FOREIGN KEY (`advogado`) REFERENCES `advogado` (`id`),
+  ADD CONSTRAINT `processo_ibfk_2` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`id`),
   ADD CONSTRAINT `processo_ibfk_3` FOREIGN KEY (`vara`) REFERENCES `vara` (`id`);
 
 --
