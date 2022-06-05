@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Jun-2022 às 20:08
+-- Tempo de geração: 05-Jun-2022 às 21:47
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -45,7 +45,8 @@ CREATE TABLE `cliente` (
   `cpf` varchar(80) NOT NULL,
   `nome` varchar(180) NOT NULL,
   `usuario` varchar(60) NOT NULL,
-  `senha` varchar(200) NOT NULL
+  `senha` varchar(200) NOT NULL,
+  `avatar` varchar(180) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -59,7 +60,8 @@ CREATE TABLE `funcionario` (
   `nome` varchar(160) NOT NULL,
   `cargo` varchar(60) NOT NULL,
   `usuario` varchar(60) NOT NULL,
-  `senha` varchar(200) NOT NULL
+  `senha` varchar(200) NOT NULL,
+  `avatar` varchar(180) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
