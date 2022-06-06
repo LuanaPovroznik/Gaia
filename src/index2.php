@@ -66,6 +66,7 @@ if(@$_REQUEST['loginButton'] == "Login") {
     $result2 = mysqli_query($con, $sql2);
 
     if (mysqli_num_rows($result) > 0 || mysqli_num_rows($result2) > 0){
+        session_start();
         header("Location: dashboard.php");
         exit;
     } else {
