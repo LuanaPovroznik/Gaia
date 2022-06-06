@@ -15,6 +15,7 @@
             echo '<a href="#">Meus agendamentos</a>';
             echo '<a href="#">Meus processos</a>';
             echo '<a href="#">Meus agendamentos</a>';
+            echo '<a href="cadastro_processo.php">Cadastro de processos</a>';
             echo '<a href="cadastro_vara.php">Nova vara judiciária</a>';
             echo '</div>';
             echo '<div class="topnav">';
