@@ -1,8 +1,8 @@
-<!doctype html>
-    <?php
-        include 'config.php';
-        include '../components/navigation_bar.php';
-    ?>
+<?php
+    include 'verification.php';
+    include 'config.php';
+    include '../components/navigation_bar.php';
+?>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">

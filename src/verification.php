@@ -1,7 +1,7 @@
-<?php 
+<?php
     session_start();
     if(!isset($_SESSION["id"]) || !isset($_SESSION["usuario"])) {
-        header("Location: index2.php");
-        exit;
+        echo "<script>console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');</script>";
+//        echo "<script>top.location.href='login.php';</script>";
     }
 ?> 

@@ -1,5 +1,4 @@
-<?php include 'config.php'; ?>
-<!doctype html>
+<?php session_start(); ?>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -38,7 +37,7 @@
         </div>
 
         <div class="right">
-            <form action="index2.php" method="post">
+            <form action="login.php" method="post">
                 <h2 style="font-family: 'Asap Condensed Medium'; font-weight: normal">Entre na sua conta</h2>
                 <input type="text" placeholder="Nome de usuário" name="nomeUsuarioCliente">
                 <br><br>
@@ -55,24 +54,23 @@
 </html>
 
 <?php
-if(@$_REQUEST['loginButton'] == "Login") {
-    @$nomeUsuarioCliente = $_POST["nomeUsuarioCliente"];
-    @$senhaCliente = md5($_POST["senhaCliente"]);
+    include 'config.php';
+
+    if(@$_REQUEST['loginButton'] == "Login") {
+        $nomeUsuarioCliente = $_POST["nomeUsuarioCliente"];
+        $senhaCliente = md5($_POST["senhaCliente"]);
 
 
-    $sql = "SELECT * FROM cliente WHERE usuario = '$nomeUsuarioCliente' AND senha = '$senhaCliente'";
-    $sql2 = "SELECT * FROM funcionario WHERE usuario = '$nomeUsuarioCliente' AND senha = '$senhaCliente'";
-    $result = mysqli_query($con, $sql);
-    $result2 = mysqli_query($con, $sql2);
+        $sql = "SELECT * FROM cliente WHERE usuario = '$nomeUsuarioCliente' AND senha = '$senhaCliente'";
+        $sql2 = "SELECT * FROM funcionario WHERE usuario = '$nomeUsuarioCliente' AND senha = '$senhaCliente'";
+        $result = mysqli_query($con, $sql);
+        $result2 = mysqli_query($con, $sql2);
 
-    if (mysqli_num_rows($result) > 0 || mysqli_num_rows($result2) > 0){
-        session_start();
-        header("Location: dashboard.php");
-        exit;
-    } else {
-        header("Location: index2.php");
-        exit;
+        if (mysqli_num_rows($result) > 0 || mysqli_num_rows($result2) > 0){
+            echo "<script>top.location.href='dashboard.php';</script>";
+        } else {
+            echo "<script>top.location.href='login.php';</script>";
+        }
     }
-}
 
 ?>

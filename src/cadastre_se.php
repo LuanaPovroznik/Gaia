@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include 'config.php';
 ?>
 <!doctype html>
@@ -34,7 +35,7 @@
                 <input type="text" placeholder="Número OAB" name="oabAdvogado" id="oabAdvogado" style="display: none">
                 <br><br>
                 <input type="submit" value="Cadastre-se" class="loginButton" name="registerButton" id="registerButton">
-                <a href="index2.php"><p class="registerLink">Já possui uma conta? Faça login</p></a>
+                <a href="login.php"><p class="registerLink">Já possui uma conta? Faça login</p></a>
             </form>
         </div>
     </div>
@@ -56,7 +57,7 @@
 <div id="confirmationModal" class="modal">
     <div class="modal-content">
         <p class="confirmationRegister">Cadastrado com sucesso.</p>
-        <a href="index2.php"><input type="button" class="backLogin" value="Ir para login &#8594;"></a>
+        <a href="login.php"><input type="button" class="backLogin" value="Ir para login &#8594;"></a>
     </div>
 </div>
 
