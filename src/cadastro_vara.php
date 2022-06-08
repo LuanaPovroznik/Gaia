@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include 'config.php';
     include 'verification.php';
     include '../components/navigation_bar.php'; ?>
