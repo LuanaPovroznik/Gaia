@@ -137,212 +137,216 @@
             }
         }
         $cargo = "advogado";
-        if(strcmp($data2['cargo'], $cargo) === 0 &&  mysqli_num_rows($result) == 0 && mysqli_num_rows($result2) > 0 ){
-            $sql = "SELECT * FROM funcionario WHERE id = $userId";
-            $sql2 = "SELECT * FROM advogado WHERE funcionario = $userId";
-            $result = mysqli_query($con, $sql);
-            $result2 = mysqli_query($con, $sql2);
-            $data = mysqli_fetch_array($result);
-            $data2 = mysqli_fetch_array($result2);
-            if($result != null){
-                echo "<div class=\"container\">";
-                echo "<form action=\"\" method=\"POST\" enctype=\"multipart/form-data\">";
-                echo "<div class=\"center\">";       
-                echo "<div class=\"right\">";
-                echo "<div class=\"upper-line\">";
-                echo "</div>";
-                echo "<div class=\"container\">";
-                echo "<div>";
-                if($data['avatar'] != null){
-                    echo '<img class="userAvatar" src="uploaded_img/'.$data['avatar'].'" id="myImg"><br><br>';
-                } else {
-                    echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
-                }
-                echo '<label for="avatar" class="avatarButton" id="avatarUpload" name="avatar"> Escolha seu avatar </label>';
-                echo '<input name="avatar" id="avatar" type="file" accept="image/jpg, image/jpeg, image/png" style="display: none"/>';
-                echo '<script>
-                        const fileInput = document.getElementById(\'avatar\');
 
-                            fileInput.onchange = function(e){
-                                if(e.target.files.length > 0){
-                                    document.getElementById(\'avatarUpload\').style.backgroundColor = \'purple\';
-                                    document.getElementById(\'avatarUpload\').innerText = "Atualizando...";
-                                    document.getElementById(\'avatarUpload\').style.color = \'white\';
-                                    document.getElementById("myImg").src = "./img/loading.gif";
-                                    setInterval(function () {
-                                        document.getElementById("myImg").style.height = "150px";
-                                        document.getElementById("myImg").src = "./img/check.png";
-                                        document.getElementById(\'avatarUpload\').innerText = "Atualizado. Selecionar outro...";
-                                        document.getElementById("myImg").style.backgroundColor = "white";                   
-                                    }, 5000);
-                                }
-                            }
-                       </script>';
-                $nome =$data['nome'];
-                echo "<h4><b> Nome: <input type=\"text\" name=\"nome\" id=\"inputNome\" maxlength=\"80\" placeholder=\"Digite seu nome\" value=\"$nome\" required></b></h4>";
-                $login =$data['usuario'];
-                echo "<h4><b> Login: <input type=\"text\" name=\"login\" id=\"inputLogin\" maxlength=\"60\" value=\"$login\" required></b></h4>";
-                $password =$data['senha'];
-                echo "<h4><b> Senha: <input type=\"password\" name=\"password\" id=\"password\" maxlength=\"80\" required></b></h4>";
-                $oab =$data2['oab'];
-                echo "<h4><b> OAB: <input type=\"text\" name=\"oab\" id=\"inputOAB\" maxlength=\"80\" placeholder=\"$oab\" value=\"$oab\" disabled></b></h4>";
-                echo "<input type=\"submit\" name=\"botao\" id=\"update\" value=\"Salvar\" class=\"loginButton\"><br> ";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-                
-                echo "</form>";
-                
-                echo "</div>";
-                echo "</div>";
-            } else {
-                echo "Error find Advogado.";
-                header("Refresh:7");
-            }
+        if(mysqli_num_rows($result2) > 0 && mysqli_num_rows($result) == 0){
+            if(strcmp($data2['cargo'], $cargo) === 0){
+                $sql = "SELECT * FROM funcionario WHERE id = $userId";
+                $sql2 = "SELECT * FROM advogado WHERE funcionario = $userId";
+                $result = mysqli_query($con, $sql);
+                $result2 = mysqli_query($con, $sql2);
+                $data = mysqli_fetch_array($result);
+                $data2 = mysqli_fetch_array($result2);
+                if($result != null){
+                    echo "<div class=\"container\">";
+                    echo "<form action=\"\" method=\"POST\" enctype=\"multipart/form-data\">";
+                    echo "<div class=\"center\">";       
+                    echo "<div class=\"right\">";
+                    echo "<div class=\"upper-line\">";
+                    echo "</div>";
+                    echo "<div class=\"container\">";
+                    echo "<div>";
+                    if($data['avatar'] != null){
+                        echo '<img class="userAvatar" src="uploaded_img/'.$data['avatar'].'" id="myImg"><br><br>';
+                    } else {
+                        echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
+                    }
+                    echo '<label for="avatar" class="avatarButton" id="avatarUpload" name="avatar"> Escolha seu avatar </label>';
+                    echo '<input name="avatar" id="avatar" type="file" accept="image/jpg, image/jpeg, image/png" style="display: none"/>';
+                    echo '<script>
+                            const fileInput = document.getElementById(\'avatar\');
     
-            if(@$_REQUEST['botao'] == "Salvar"){
-                $password = md5($_POST['password']);  
-                if($_FILES['avatar']['name'] != ''){
-                    $image_name = $_FILES['avatar']['name'];
-                    $image_size = $_FILES['avatar']['size'];
-                    $image_tmp_name = $_FILES['avatar']['tmp_name'];
-                    $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-                    $new_name = $_POST['nome'].'.'.$extension;       
-                    $image_folder = "uploaded_img/".$new_name;
-                    $insere = "UPDATE funcionario SET 
-                    nome = '{$_POST['nome']}'
-                    , usuario = '{$_POST['login']}'
-                    , senha = '$password'
-                    , avatar = '$new_name'
-                    WHERE id = $userId";
-                    $result_update = mysqli_query($con, $insere);
-                    if ($result_update){
-                        move_uploaded_file($image_tmp_name, $image_folder);
-                        echo "<h2> Perfil atualizado com sucesso!!!</h2>";
-                        echo "<script>top.location.href=\"profile.php\"</script>";
-                    } else {
-                        echo "<h2> Não consegui atualizar!!!</h2>"; 
-                    }  
-                exit; 
-                } else{
-                    $insere = "UPDATE funcionario SET 
-                    nome = '{$_POST['nome']}'
-                    , usuario = '{$_POST['login']}'
-                    , senha = '$password'
-                    WHERE id = $userId";
-                    $result_update = mysqli_query($con, $insere);
-                    if ($result_update){
-                        move_uploaded_file($image_tmp_name, $image_folder);
-                        echo "<h2> Perfil atualizado com sucesso!!!</h2>";
-                        echo "<script>top.location.href=\"profile.php\"</script>";
-                    } else {
-                        echo "<h2> Não consegui atualizar!!!</h2>"; 
-                    }  
-                exit; 
-                }  
-                
-            }
-        } else if (mysqli_num_rows($result2) > 0 && strcmp($data2['cargo'], $cargo) !== 0){
-            $sql = "SELECT * FROM funcionario WHERE id = $userId";
-            $result = mysqli_query($con, $sql);
-            $data = mysqli_fetch_array($result);
-            if($result != null){
-                echo "<div class=\"container\">";
-                echo "<form action=\"\" method=\"POST\" enctype=\"multipart/form-data\">";
-                echo "<div class=\"center\">";       
-                echo "<div class=\"right\">";
-                echo "<div class=\"upper-line\">";
-                echo "</div>";
-                echo "<div class=\"container\">";
-                echo "<div>";
-                if($data['avatar'] != null){
-                    echo '<img class="userAvatar" src="uploaded_img/'.$data['avatar'].'" id="myImg"><br><br>';
+                                fileInput.onchange = function(e){
+                                    if(e.target.files.length > 0){
+                                        document.getElementById(\'avatarUpload\').style.backgroundColor = \'purple\';
+                                        document.getElementById(\'avatarUpload\').innerText = "Atualizando...";
+                                        document.getElementById(\'avatarUpload\').style.color = \'white\';
+                                        document.getElementById("myImg").src = "./img/loading.gif";
+                                        setInterval(function () {
+                                            document.getElementById("myImg").style.height = "150px";
+                                            document.getElementById("myImg").src = "./img/check.png";
+                                            document.getElementById(\'avatarUpload\').innerText = "Atualizado. Selecionar outro...";
+                                            document.getElementById("myImg").style.backgroundColor = "white";                   
+                                        }, 5000);
+                                    }
+                                }
+                           </script>';
+                    $nome =$data['nome'];
+                    echo "<h4><b> Nome: <input type=\"text\" name=\"nome\" id=\"inputNome\" maxlength=\"80\" placeholder=\"Digite seu nome\" value=\"$nome\" required></b></h4>";
+                    $login =$data['usuario'];
+                    echo "<h4><b> Login: <input type=\"text\" name=\"login\" id=\"inputLogin\" maxlength=\"60\" value=\"$login\" required></b></h4>";
+                    $password =$data['senha'];
+                    echo "<h4><b> Senha: <input type=\"password\" name=\"password\" id=\"password\" maxlength=\"80\" required></b></h4>";
+                    $oab =$data2['oab'];
+                    echo "<h4><b> OAB: <input type=\"text\" name=\"oab\" id=\"inputOAB\" maxlength=\"80\" placeholder=\"$oab\" value=\"$oab\" disabled></b></h4>";
+                    echo "<input type=\"submit\" name=\"botao\" id=\"update\" value=\"Salvar\" class=\"loginButton\"><br> ";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    
+                    echo "</form>";
+                    
+                    echo "</div>";
+                    echo "</div>";
                 } else {
-                    echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
+                    echo "Error find Advogado.";
+                    header("Refresh:7");
                 }
-                echo '<label for="avatar" class="avatarButton" id="avatarUpload" name="avatar"> Escolha seu avatar </label>';
-                echo '<input name="avatar" id="avatar" type="file" accept="image/jpg, image/jpeg, image/png" style="display: none"/>';
-                echo '<script>
-                        const fileInput = document.getElementById(\'avatar\');
-
-                            fileInput.onchange = function(e){
-                                if(e.target.files.length > 0){
-                                    document.getElementById(\'avatarUpload\').style.backgroundColor = \'purple\';
-                                    document.getElementById(\'avatarUpload\').innerText = "Atualizando...";
-                                    document.getElementById(\'avatarUpload\').style.color = \'white\';
-                                    document.getElementById("myImg").src = "./img/loading.gif";
-                                    setInterval(function () {
-                                        document.getElementById("myImg").style.height = "150px";
-                                        document.getElementById("myImg").src = "./img/check.png";
-                                        document.getElementById(\'avatarUpload\').innerText = "Atualizado. Selecionar outro...";
-                                        document.getElementById("myImg").style.backgroundColor = "white";                   
-                                    }, 5000);
-                                }
-                            }
-                       </script>';
-                $nome =$data['nome'];
-                echo "<h4><b> Nome: <input type=\"text\" name=\"nome\" id=\"inputNome\" maxlength=\"80\" placeholder=\"Digite seu nome\" value=\"$nome\" required></b></h4>";
-                $login =$data['usuario'];
-                echo "<h4><b> Login: <input type=\"text\" name=\"login\" id=\"inputLogin\" maxlength=\"60\" value=\"$login\" required></b></h4>";
-                $password =$data['senha'];
-                echo "<h4><b> Senha: <input type=\"password\" name=\"password\" id=\"password\" maxlength=\"80\" required></b></h4>";
-                echo "<input type=\"submit\" name=\"botao\" id=\"update\" value=\"Salvar\" class=\"loginButton\"><br> ";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-                
-                echo "</form>";
-                
-                echo "</div>";
-                echo "</div>";
+        
+                if(@$_REQUEST['botao'] == "Salvar"){
+                    $password = md5($_POST['password']);  
+                    if($_FILES['avatar']['name'] != ''){
+                        $image_name = $_FILES['avatar']['name'];
+                        $image_size = $_FILES['avatar']['size'];
+                        $image_tmp_name = $_FILES['avatar']['tmp_name'];
+                        $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+                        $new_name = $_POST['nome'].'.'.$extension;       
+                        $image_folder = "uploaded_img/".$new_name;
+                        $insere = "UPDATE funcionario SET 
+                        nome = '{$_POST['nome']}'
+                        , usuario = '{$_POST['login']}'
+                        , senha = '$password'
+                        , avatar = '$new_name'
+                        WHERE id = $userId";
+                        $result_update = mysqli_query($con, $insere);
+                        if ($result_update){
+                            move_uploaded_file($image_tmp_name, $image_folder);
+                            echo "<h2> Perfil atualizado com sucesso!!!</h2>";
+                            echo "<script>top.location.href=\"profile.php\"</script>";
+                        } else {
+                            echo "<h2> Não consegui atualizar!!!</h2>"; 
+                        }  
+                    exit; 
+                    } else{
+                        $insere = "UPDATE funcionario SET 
+                        nome = '{$_POST['nome']}'
+                        , usuario = '{$_POST['login']}'
+                        , senha = '$password'
+                        WHERE id = $userId";
+                        $result_update = mysqli_query($con, $insere);
+                        if ($result_update){
+                            move_uploaded_file($image_tmp_name, $image_folder);
+                            echo "<h2> Perfil atualizado com sucesso!!!</h2>";
+                            echo "<script>top.location.href=\"profile.php\"</script>";
+                        } else {
+                            echo "<h2> Não consegui atualizar!!!</h2>"; 
+                        }  
+                    exit; 
+                    }
+                }
             } else {
-                echo "Error find Client.";
-                header("Refresh:7");
-            }
+                $sql = "SELECT * FROM funcionario WHERE id = $userId";
+                $result = mysqli_query($con, $sql);
+                $data = mysqli_fetch_array($result);
+                if($result != null){
+                    echo "<div class=\"container\">";
+                    echo "<form action=\"\" method=\"POST\" enctype=\"multipart/form-data\">";
+                    echo "<div class=\"center\">";       
+                    echo "<div class=\"right\">";
+                    echo "<div class=\"upper-line\">";
+                    echo "</div>";
+                    echo "<div class=\"container\">";
+                    echo "<div>";
+                    if($data['avatar'] != null){
+                        echo '<img class="userAvatar" src="uploaded_img/'.$data['avatar'].'" id="myImg"><br><br>';
+                    } else {
+                        echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
+                    }
+                    echo '<label for="avatar" class="avatarButton" id="avatarUpload" name="avatar"> Escolha seu avatar </label>';
+                    echo '<input name="avatar" id="avatar" type="file" accept="image/jpg, image/jpeg, image/png" style="display: none"/>';
+                    echo '<script>
+                            const fileInput = document.getElementById(\'avatar\');
     
-            if(@$_REQUEST['botao'] == "Salvar"){
-                $password = md5($_POST['password']);  
-                if($_FILES['avatar']['name'] != ''){
-                    $image_name = $_FILES['avatar']['name'];
-                    $image_size = $_FILES['avatar']['size'];
-                    $image_tmp_name = $_FILES['avatar']['tmp_name'];
-                    $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-                    $new_name = $_POST['nome'].'.'.$extension;       
-                    $image_folder = "uploaded_img/".$new_name;
-                    $insere = "UPDATE funcionario SET 
-                    nome = '{$_POST['nome']}'
-                    , usuario = '{$_POST['login']}'
-                    , senha = '$password'
-                    , avatar = '$new_name'
-                    WHERE id = $userId";
-                    $result_update = mysqli_query($con, $insere);
-                    if ($result_update){
-                        move_uploaded_file($image_tmp_name, $image_folder);
-                        echo "<h2> Perfil atualizado com sucesso!!!</h2>";
-                        echo "<script>top.location.href=\"profile.php\"</script>";
-                    } else {
-                        echo "<h2> Não consegui atualizar!!!</h2>"; 
+                                fileInput.onchange = function(e){
+                                    if(e.target.files.length > 0){
+                                        document.getElementById(\'avatarUpload\').style.backgroundColor = \'purple\';
+                                        document.getElementById(\'avatarUpload\').innerText = "Atualizando...";
+                                        document.getElementById(\'avatarUpload\').style.color = \'white\';
+                                        document.getElementById("myImg").src = "./img/loading.gif";
+                                        setInterval(function () {
+                                            document.getElementById("myImg").style.height = "150px";
+                                            document.getElementById("myImg").src = "./img/check.png";
+                                            document.getElementById(\'avatarUpload\').innerText = "Atualizado. Selecionar outro...";
+                                            document.getElementById("myImg").style.backgroundColor = "white";                   
+                                        }, 5000);
+                                    }
+                                }
+                           </script>';
+                    $nome =$data['nome'];
+                    echo "<h4><b> Nome: <input type=\"text\" name=\"nome\" id=\"inputNome\" maxlength=\"80\" placeholder=\"Digite seu nome\" value=\"$nome\" required></b></h4>";
+                    $login =$data['usuario'];
+                    echo "<h4><b> Login: <input type=\"text\" name=\"login\" id=\"inputLogin\" maxlength=\"60\" value=\"$login\" required></b></h4>";
+                    $password =$data['senha'];
+                    echo "<h4><b> Senha: <input type=\"password\" name=\"password\" id=\"password\" maxlength=\"80\" required></b></h4>";
+                    echo "<input type=\"submit\" name=\"botao\" id=\"update\" value=\"Salvar\" class=\"loginButton\"><br> ";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    
+                    echo "</form>";
+                    
+                    echo "</div>";
+                    echo "</div>";
+                } else {
+                    echo "Error find Client.";
+                    header("Refresh:7");
+                }
+        
+                if(@$_REQUEST['botao'] == "Salvar"){
+                    $password = md5($_POST['password']);  
+                    if($_FILES['avatar']['name'] != ''){
+                        $image_name = $_FILES['avatar']['name'];
+                        $image_size = $_FILES['avatar']['size'];
+                        $image_tmp_name = $_FILES['avatar']['tmp_name'];
+                        $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+                        $new_name = $_POST['nome'].'.'.$extension;       
+                        $image_folder = "uploaded_img/".$new_name;
+                        $insere = "UPDATE funcionario SET 
+                        nome = '{$_POST['nome']}'
+                        , usuario = '{$_POST['login']}'
+                        , senha = '$password'
+                        , avatar = '$new_name'
+                        WHERE id = $userId";
+                        $result_update = mysqli_query($con, $insere);
+                        if ($result_update){
+                            move_uploaded_file($image_tmp_name, $image_folder);
+                            echo "<h2> Perfil atualizado com sucesso!!!</h2>";
+                            echo "<script>top.location.href=\"profile.php\"</script>";
+                        } else {
+                            echo "<h2> Não consegui atualizar!!!</h2>"; 
+                        }  
+                    exit; 
+                    } else{
+                        $insere = "UPDATE funcionario SET 
+                        nome = '{$_POST['nome']}'
+                        , usuario = '{$_POST['login']}'
+                        , senha = '$password'
+                        WHERE id = $userId";
+                        $result_update = mysqli_query($con, $insere);
+                        if ($result_update){
+                            move_uploaded_file($image_tmp_name, $image_folder);
+                            echo "<h2> Perfil atualizado com sucesso!!!</h2>";
+                            echo "<script>top.location.href=\"profile.php\"</script>";
+                        } else {
+                            echo "<h2> Não consegui atualizar!!!</h2>"; 
+                        }  
+                    exit; 
                     }  
-                exit; 
-                } else{
-                    $insere = "UPDATE funcionario SET 
-                    nome = '{$_POST['nome']}'
-                    , usuario = '{$_POST['login']}'
-                    , senha = '$password'
-                    WHERE id = $userId";
-                    $result_update = mysqli_query($con, $insere);
-                    if ($result_update){
-                        move_uploaded_file($image_tmp_name, $image_folder);
-                        echo "<h2> Perfil atualizado com sucesso!!!</h2>";
-                        echo "<script>top.location.href=\"profile.php\"</script>";
-                    } else {
-                        echo "<h2> Não consegui atualizar!!!</h2>"; 
-                    }  
-                exit; 
-                }  
-                
+                    
+                }
             }
         }
+
+       
         
     ?>
 </body>
