@@ -36,7 +36,8 @@
         if(mysqli_num_rows($result) > 0 && mysqli_num_rows($result2) == 0){
             echo '<div id="mySidenav" class="sidenav">';
             echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
-            echo '<a href="#">Meus agendamentos</a>';
+            echo '<a href="novo_agendamento.php">Novo agendamento</a>';
+            echo '<a href="meus_agendamentos.php">Meus agendamentos</a>';
             echo '<a href="meus_processos.php">Meus processos</a>';
             echo '</div>';
             echo '<div class="topnav">';

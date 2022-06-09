@@ -47,11 +47,6 @@
                 echo '</div>';
             echo '</div>';
             echo '<div class="column">';
-            echo '<div class="card">';
-                echo '<p>coisa</p>';
-                    echo '</div>';
-                echo '</div>';
-            echo '<div class="column">';
                 echo '<div class="card">';
                     echo '<p>agendamentos</p>';
                 echo '</div>';
@@ -78,11 +73,6 @@
                     echo '</div>';
                 echo '</div>';
                 echo '<div class="column">';
-                echo '<div class="card">';
-                    echo '<p>coisa</p>';
-                        echo '</div>';
-                    echo '</div>';
-                echo '<div class="column">';
                     echo '<div class="card">';
                         echo '<p>agendamentos</p>';
                     echo '</div>';
@@ -104,10 +94,6 @@
                     echo '</div>';
                 echo '</div>';
                 echo '<div class="column">';
-                echo '<div class="card">';
-                    echo '<p>coisa</p>';
-                        echo '</div>';
-                    echo '</div>';
                 echo '<div class="column">';
                     echo '<div class="card">';
                         echo '<p>agendamentos</p>';
