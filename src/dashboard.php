@@ -5,6 +5,7 @@
 
     @$userLogin = $_SESSION['usuario'];
     @$userId = $_SESSION['id'];
+    @$userNome = $_SESSION['nome'];
 ?>
 <html lang="pt-BR">
 <head>
@@ -21,11 +22,19 @@
     $sql = "SELECT usuario FROM cliente WHERE usuario = '{$url_id}'";
     $result = mysqli_query($con, $sql);
 
+    $sql1 = "SELECT * FROM cliente WHERE usuario = '{$url_id}'";
+    $result1 = mysqli_query($con, $sql1);
+    $data1 = mysqli_fetch_array($result1);
+
     $sql2 = "SELECT usuario FROM funcionario WHERE usuario = '{$url_id}'";
     $result2 = mysqli_query($con, $sql2);
 
+    $sql3 = "SELECT * FROM funcionario WHERE usuario = '{$url_id}'";
+    $result3 = mysqli_query($con, $sql3);
+    $data2 = mysqli_fetch_array($result3);
+
     if(mysqli_num_rows($result) > 0 && mysqli_num_rows($result2) == 0){
-        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard $userLogin</h1>";
+        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard $userNome</h1>";
         echo '<div class="row">';
         echo '<div class="column">';
             echo '<div class="card">';
@@ -51,36 +60,9 @@
 
     }
     
-
-    /*if(mysqli_num_rows($result2) > 0 && mysqli_num_rows($result) == 0){
-        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard $userLogin</h1>";
-
-        echo '<div class="row">';
-        echo '<div class="column">';
-            echo '<div class="card">';
-                echo '<p>processo advogado</p>';
-            echo '</div>';
-            echo '</div>';
-            echo '<div class="column">';
-                echo '<div class="card">';
-                    echo '<p>grafico</p>';
-                echo '</div>';
-            echo '</div>';
-            echo '<div class="column">';
-            echo '<div class="card">';
-                echo '<p>coisa</p>';
-                    echo '</div>';
-                echo '</div>';
-            echo '<div class="column">';
-                echo '<div class="card">';
-                    echo '<p>agendamentos</p>';
-                echo '</div>';
-            echo '</div>';
-        echo '</div>';
-    }*/
     $cargo = "advogado";
-    if(strcmp(@$_SESSION['cargo'], $cargo) !== 0 &&  mysqli_num_rows($result) == 0 && mysqli_num_rows($result2) > 0 ){
-        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard $userLogin</h1>";
+    if(strcmp($data2['cargo'], $cargo) === 0 && mysqli_num_rows($result2) > 0 ){
+        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard $userNome</h1>";
 
         echo '<div class="row">';
         echo '<div class="column">';
@@ -104,8 +86,9 @@
                 echo '</div>';
             echo '</div>';
         echo '</div>';
-    } else if (mysqli_num_rows($result2) > 0){
-        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard $userLogin</h1>";
+    } else if (mysqli_num_rows($result2) > 0  && strcmp($data2['cargo'], $cargo) !== 0){
+        echo "<script>console.log('No dasboard: ".$data2['cargo']."');</script>";;
+        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard $userNome</h1>";
 
         echo '<div class="row">';
         echo '<div class="column">';
