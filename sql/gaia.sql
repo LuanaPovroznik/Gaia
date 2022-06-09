@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Jun-2022 às 23:50
+-- Tempo de geração: 09-Jun-2022 às 15:34
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -34,6 +34,17 @@ CREATE TABLE `advogado` (
   `funcionario` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `advogado`
+--
+
+INSERT INTO `advogado` (`id`, `nome`, `oab`, `funcionario`) VALUES
+(2, 'matheus portes', '19348', 1),
+(3, 'Matheus', '1345', 3),
+(4, 'Matheus', '15674', 4),
+(5, 'Matheus', '134412', 5),
+(6, 'Matheus teste de cargo', '99994', 6);
+
 -- --------------------------------------------------------
 
 --
@@ -54,7 +65,15 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `cpf`, `nome`, `usuario`, `senha`, `avatar`) VALUES
-(1, '0000000', 'luana', 'luana', '123', '');
+(1, '0000000', 'luana', 'luana', '123', ''),
+(2, '555555', 'Matheus Portes', 'matheusinho', 'e7d80ffeefa212b7c5c55700e4f7193e', ''),
+(3, '5555', 'Matheus 1000 grau', 'matheus', '202cb962ac59075b964b07152d234b70', ''),
+(4, '5555', 'Matheus Portes', 'matheus.secret', 'e7d80ffeefa212b7c5c55700e4f7193e', ''),
+(5, '5555', 'Matheus', 'matheusinho.cliente', 'e7d80ffeefa212b7c5c55700e4f7193e', ''),
+(6, '5555', 'Matheus', 'matheus.secret', '202cb962ac59075b964b07152d234b70', ''),
+(7, '5555', 'Matheus', 'matheus.secret', '202cb962ac59075b964b07152d234b70', ''),
+(8, '5555', 'Matheus', 'matheus.secret', '202cb962ac59075b964b07152d234b70', '.jpg'),
+(9, '5555', 'Matheus', 'matheus.secret', '202cb962ac59075b964b07152d234b70', 'matheus.secret.jpg');
 
 -- --------------------------------------------------------
 
@@ -66,10 +85,23 @@ CREATE TABLE `funcionario` (
   `id` int(5) NOT NULL,
   `nome` varchar(160) NOT NULL,
   `cargo` varchar(60) NOT NULL,
+  `oab` varchar(80) DEFAULT NULL,
   `usuario` varchar(60) NOT NULL,
   `senha` varchar(200) NOT NULL,
   `avatar` varchar(180) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `funcionario`
+--
+
+INSERT INTO `funcionario` (`id`, `nome`, `cargo`, `oab`, `usuario`, `senha`, `avatar`) VALUES
+(1, 'matheus portes', 'advogado', '19348', 'matheus.portes', '202cb962ac59075b964b07152d234b70', ''),
+(2, 'Matheus', 'secretario', NULL, 'matheus.secret', '202cb962ac59075b964b07152d234b70', ''),
+(3, 'Matheus', 'advogado', NULL, 'matheus.adv', '202cb962ac59075b964b07152d234b70', ''),
+(4, 'Matheus', 'advogado', NULL, 'matheus.adv2', '202cb962ac59075b964b07152d234b70', ''),
+(5, 'Matheus', 'advogado', NULL, 'matheus.adv3', '202cb962ac59075b964b07152d234b70', ''),
+(6, 'Matheus teste de cargo', 'advogado', '99994', 'matheus.advNovo', 'e7d80ffeefa212b7c5c55700e4f7193e', 'matheus.advNovo.jpg');
 
 -- --------------------------------------------------------
 
@@ -87,6 +119,13 @@ CREATE TABLE `processo` (
   `advogado` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `processo`
+--
+
+INSERT INTO `processo` (`id`, `numero`, `assunto`, `movimentacao`, `cliente`, `vara`, `advogado`) VALUES
+(2, '1213123', 'adssdads', '2022-06-11', 3, 1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -99,8 +138,16 @@ CREATE TABLE `reuniao` (
   `assunto` varchar(180) NOT NULL,
   `cliente` int(5) NOT NULL,
   `advogado` int(5) NOT NULL,
-  `processo` int(5) NOT NULL
+  `processo` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `reuniao`
+--
+
+INSERT INTO `reuniao` (`id`, `data`, `assunto`, `cliente`, `advogado`, `processo`) VALUES
+(14, '2022-06-08', 'dasdas', 3, 2, NULL),
+(16, '2022-06-29', '31232', 3, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,6 +159,13 @@ CREATE TABLE `vara` (
   `id` int(5) NOT NULL,
   `nome` varchar(160) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `vara`
+--
+
+INSERT INTO `vara` (`id`, `nome`) VALUES
+(1, 'Teste');
 
 --
 -- Índices para tabelas despejadas
@@ -168,37 +222,37 @@ ALTER TABLE `vara`
 -- AUTO_INCREMENT de tabela `advogado`
 --
 ALTER TABLE `advogado`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `processo`
 --
 ALTER TABLE `processo`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `reuniao`
 --
 ALTER TABLE `reuniao`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `vara`
 --
 ALTER TABLE `vara`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para despejos de tabelas
