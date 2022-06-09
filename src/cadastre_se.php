@@ -41,9 +41,9 @@
                 <select name="cargoUsuario" id="cargoUsuario" style="margin-right: 90px" onchange="mostrarCampos()">
                     <option value="Cliente">Cliente</option>
                     <?php 
-                        if(@$userRole == "Advogada"){
-                            echo '<option value="Secretária">Secretária</option>';
-                            echo '<option value="Advogada">Advogada</option>';
+                        if(@$userRole == "advogado"){
+                            echo '<option value="secretario">Secretária</option>';
+                            echo '<option value="advogado">Advogada</option>';
                         }
                     ?>
                 </select>
@@ -79,7 +79,7 @@
 <script>
     function mostrarCampos(){
         const value = document.getElementById("cargoUsuario").value;
-        if (value == "Advogada"){
+        if (value == "advogado"){
             document.getElementById("oabAdvogado").style.display = "";
         } else {
             document.getElementById("oabAdvogado").style.display = "none";
@@ -153,7 +153,7 @@
             } else {
                 echo '<script>errorModal()</script>';
             }
-        } else if (@$cargoUsuario == "Secretária"){
+        } else if (@$cargoUsuario == "secretario"){
             $sql = "INSERT INTO funcionario (nome, cargo, usuario, senha, avatar)
                         VALUES ('$nomeUsuario', '$cargoUsuario', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
             if (mysqli_query($con, $sql)) {

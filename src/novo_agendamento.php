@@ -30,7 +30,7 @@
         <div class="right">
             <form action="novo_agendamento.php" method="post">
                 <h2 style="font-family: 'Asap Condensed Medium'; font-weight: normal">Novo agendamento</h2>
-                <?php if (@$userRole != "Advogada"){?>
+                <?php if (@$userRole != "advogado"){?>
                     <label for="dataReuniao" style="margin-right: 85px">Data desejada:</label>
                     <input type="date" name="dataReuniao"><br><br>
                     <label for="advogadoReuniao">Advogado responsável: </label>
@@ -139,7 +139,7 @@ if(@$_REQUEST['agendamento'] == "Agendar") {
     @$dataReuniao = $_POST['dataReuniao'];
     @$assuntoReuniao = $_POST['assuntoReuniao'];
 
-    if($userRole == "Advogada"){
+    if($userRole == "advogado"){
         @$clienteDesejado = $_POST['clienteReuniao'];
         $consultaCliente = "SELECT * FROM cliente WHERE nome = '$clienteDesejado'";
         $resultCliente = mysqli_query($con, $consultaCliente);
