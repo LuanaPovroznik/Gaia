@@ -20,7 +20,7 @@
                 while ($row = mysqli_fetch_array($result2)){
                     @$userRole = $row['cargo'];
                 }
-            }
+        }
 
     ?>
     <title>Cadastre-se</title>
@@ -30,7 +30,7 @@
 <div class="container">
     <div class="center">
         <div class="right">
-            <form action="cadastre_se.php" method="post">
+            <form action="cadastre_se.php" method="post" enctype="multipart/form-data">
                 <?php 
                     if (!isset($_SESSION['usuario']) || !isset($_SESSION['id'])) {
                         echo '<h2 style="font-family: \'Asap Condensed Medium\'; font-weight: normal">Cadastre-se</h2>';
@@ -38,7 +38,7 @@
                         echo '<h2 style="font-family: \'Asap Condensed Medium\'; font-weight: normal">Cadastrar novo usuário</h2>';
                     }
                 ?>
-                <select name="cargoUsuario" id="cargoUsuario" style="margin-right: 230px" onchange="mostrarCampos()">
+                <select name="cargoUsuario" id="cargoUsuario" style="margin-right: 90px" onchange="mostrarCampos()">
                     <option value="Cliente">Cliente</option>
                     <?php 
                         if(@$userRole == "Advogada"){
@@ -46,7 +46,11 @@
                             echo '<option value="Advogada">Advogada</option>';
                         }
                     ?>
-                </select><br><br>
+                </select>
+                <label for="avatar" class="avatarButton" id="avatarUpload">
+                    Escolha seu avatar
+                </label>
+                <input name="avatar" id="avatar" type="file" accept="image/jpg, image/jpeg, image/png" style="display: none"/><br><br>
                 <input type="text" placeholder="Nome completo" name="nomeUsuario" required>
                 <br><br>
                 <input type="password" placeholder="Senha" name="senhaUsuario" required>
@@ -128,11 +132,22 @@
         @$senhaUsuario = md5($_POST["senhaUsuario"]);
         @$oabAdvogado = $_POST["oabAdvogado"];
         @$cargoUsuario = $_POST["cargoUsuario"];
-        @$avatarCliente = null;
+
+        $image_name = $_FILES['avatar']['name'];
+        $image_size = $_FILES['avatar']['size'];
+        $image_tmp_name = $_FILES['avatar']['tmp_name'];
+        $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+        if($extension != null){
+            $avatarCliente = $_POST['nomeDeUsuario'].'.'.$extension;
+        } else {
+            $avatarCliente = null;
+        }
+        $image_folder = "uploaded_img/".$avatarCliente;
 
         if (@$cargoUsuario == "Cliente"){
             $sql = "INSERT INTO cliente (cpf, nome, usuario, senha, avatar)
                         VALUES ('$cpfUsuario', '$nomeUsuario', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
+            move_uploaded_file($image_tmp_name, $image_folder);
             if (mysqli_query($con, $sql)) {
                 echo '<script>confirmationModal()</script>';
             } else {
@@ -148,8 +163,8 @@
                 echo '<script>errorModal()</script>';
             }
         } else {
-            $sql = "INSERT INTO funcionario (nome, cargo, usuario, senha, avatar)
-                        VALUES ('$nomeUsuario', '$cargoUsuario', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
+            $sql = "INSERT INTO funcionario (nome, cargo, oab, usuario, senha, avatar)
+                        VALUES ('$nomeUsuario', '$cargoUsuario', '$oabAdvogado', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
             $result = mysqli_query($con, $sql);
 
             $getId = "SELECT id FROM funcionario WHERE usuario = '$nomeDeUsuario'";

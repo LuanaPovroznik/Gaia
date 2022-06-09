@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c84ab3a6-942b-4e8b-990e-d3440eec8ec0" name="Changes" comment="" />
+    <list default="true" id="9488e538-c5b8-40e0-bd26-ae60f5a801cf" name="Changes" comment="wip: verificação funcionando (?)">
+      <change afterPath="$PROJECT_DIR$/src/novo_agendamento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/cadastre_se_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/cadastre_se_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index_style2.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index_style2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cadastre_se.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/cadastre_se.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/verification.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/verification.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2AJbs67Q8VlHW2wtqr6Pni2bGzJ" />
+  <component name="ProjectId" id="2AA8V2mJefGUy32uthGuLNrvBD5" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,16 +41,96 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Gaia\src" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c84ab3a6-942b-4e8b-990e-d3440eec8ec0" name="Changes" comment="" />
-      <created>1654730846381</created>
+      <changelist id="9488e538-c5b8-40e0-bd26-ae60f5a801cf" name="Changes" comment="" />
+      <created>1654441084625</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1654730846381</updated>
+      <updated>1654441084625</updated>
+      <workItem from="1654441125569" duration="24577000" />
+      <workItem from="1654472470683" duration="4418000" />
+      <workItem from="1654634942101" duration="3877000" />
+      <workItem from="1654639070529" duration="4839000" />
+      <workItem from="1654741138874" duration="1365000" />
+      <workItem from="1654742629548" duration="8301000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: index e navbar de usuário não logados finalizada">
+      <created>1654448432646</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1654448432646</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: nova index e tela de cadastro finalizadas">
+      <created>1654457784639</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654457784639</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: login funcionando direcionando para dashboard e tela de cadastro dando retorno de sucesso/erro através de modal">
+      <created>1654466696812</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1654466696812</updated>
+    </task>
+    <task id="LOCAL-00004" summary="css do cadastre-se">
+      <created>1654474527975</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654474527975</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: formulário de cadastro serve para os três níveis de usuário&#10;to do: níveis de usuário no formulário só podem aparecer para quem é advogado">
+      <created>1654476227279</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654476227279</updated>
+    </task>
+    <task id="LOCAL-00006" summary="wip: verificação funcionando (?)">
+      <created>1654647090083</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1654647090083</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: index e navbar de usuário não logados finalizada" />
+    <MESSAGE value="feat: nova index e tela de cadastro finalizadas" />
+    <MESSAGE value="feat: login funcionando direcionando para dashboard e tela de cadastro dando retorno de sucesso/erro através de modal" />
+    <MESSAGE value="css do cadastre-se" />
+    <MESSAGE value="feat: formulário de cadastro serve para os três níveis de usuário&#10;to do: níveis de usuário no formulário só podem aparecer para quem é advogado" />
+    <MESSAGE value="wip: verificação funcionando (?)" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip: verificação funcionando (?)" />
   </component>
 </project>
