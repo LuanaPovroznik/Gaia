@@ -34,7 +34,7 @@
     $data2 = mysqli_fetch_array($result3);
 
     if(mysqli_num_rows($result) > 0 && mysqli_num_rows($result2) == 0){
-        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard". $data1['nome']."</h1>";
+        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard ". $data1['nome']."</h1>";
         echo '<div class="row">';
         echo '<div class="column">';
             echo '<div class="card">';
@@ -64,7 +64,7 @@
 
     if(mysqli_num_rows($result2) > 0 && mysqli_num_rows($result) == 0){
         if(strcmp($data2['cargo'], $cargo) === 0){
-            echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard". $data2['nome']."</h1>";
+            echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard ". $data2['nome']."</h1>";
 
             echo '<div class="row">';
             echo '<div class="column">';
@@ -90,7 +90,7 @@
             echo '</div>';
         } else{
             echo "<script>console.log('No dasboard: ".$data2['cargo']."');</script>";
-            echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard". $data2['nome']."</h1>";
+            echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard ". $data2['nome']."</h1>";
     
             echo '<div class="row">';
             echo '<div class="column">';
