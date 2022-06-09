@@ -48,7 +48,7 @@
                         echo "<input type=\"hidden\" value=\"$reuniaoId\" name=\"potionId\">";
                         $data =$row['data'];
                         echo "<p> <span>Data do agendamento: </span> ".$data."</p>";
-                        $assunto =$row['assunto'];
+                        $assunto = $row['assunto'];
                         echo "<p> <span>Assunto: </span> ".$assunto."</p>";;
                         @$clienteId = $row['cliente'];
                         @$getClienteId = mysqli_query($con, "SELECT nome FROM cliente WHERE id = $clienteId");
@@ -67,7 +67,7 @@
                         while(@$resultProcessoNumero = mysqli_fetch_array($getProcessoId)){
                             @$numeroProcesso = @$resultProcessoNumero['numero'];
                         }
-                        echo "<p> <span>Numero do processo: </span> ".$numeroProcesso."</p>";
+                        //echo "<p> <span>Numero do processo: </span> ".$numeroProcesso."</p>";
                        
                     echo "</div>";
                 }

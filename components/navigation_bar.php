@@ -36,6 +36,7 @@
         if(mysqli_num_rows($result) > 0 && mysqli_num_rows($result2) == 0){
             echo '<div id="mySidenav" class="sidenav">';
             echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
+            echo '<a href="dashboard.php">Dashboard</a>';
             echo '<a href="novo_agendamento.php">Novo agendamento</a>';
             echo '<a href="meus_agendamentos.php">Meus agendamentos</a>';
             echo '<a href="meus_processos.php">Meus processos</a>';
@@ -63,10 +64,12 @@
             if(strcmp($data2['cargo'], $cargo) === 0){
                 echo '<div id="mySidenav" class="sidenav">';
                 echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
+                echo '<a href="dashboard.php">Dashboard</a>';
                 echo '<a href="novo_agendamento.php">Novo agendamento</a>';
                 //echo '<a href="meus_processos.php">Meus processos</a>';
                 echo '<a href="cadastro_processo.php">Cadastro de processos</a>';
                 echo '<a href="cadastro_vara.php">Nova vara judiciária</a>';
+                echo '<a href="cadastre_se.php">Cadastrar novo usuário</a>';
                 echo '</div>';
                 echo '<div class="topnav">';
                     echo '<span class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
@@ -112,10 +115,12 @@
 <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
+    document.body.style.marginLeft = "250px";
     }
 
     function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+    document.body.style.marginLeft = "0";
     }
 </script>
 </body>

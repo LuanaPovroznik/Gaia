@@ -34,21 +34,35 @@
     $data2 = mysqli_fetch_array($result3);
 
     if(mysqli_num_rows($result) > 0 && mysqli_num_rows($result2) == 0){
-        echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard ". $data1['nome']."</h1>";
+        echo "<h1 style=\"font-size: 26px; margin-left: 10px;\">Bem vindo, ". $data1['nome']."</h1>";
         echo '<div class="row">';
         echo '<div class="column">';
-            echo '<div class="card">';
-                echo '<p>processo cliente</p>';
+            echo '<div class="card" style="text-align: left;">';
+                echo '<h2 style="text-align: left;">Meus processos</h2>';
+                $getMeusProcessos = "SELECT * FROM processo WHERE cliente = '$userId'";
+                    $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
+                    while ($row = mysqli_fetch_array($resultMeusProcessos)){
+                        echo '<h4>Último processo ativo</h4>';
+                        echo '<p><span style="font-weight: bold;">Número do processo:</span> '.$row['numero'].'</p>';
+                        echo '<p><span style="font-weight: bold;">Assunto:</span> '.$row['assunto'].'</p>';
+                        echo '<p><span style="font-weight: bold;">Última movimentação:</span> '.$row['movimentacao'].'</p>';
+                    }
             echo '</div>';
             echo '</div>';
+            //echo '<div class="column">';
+              //  echo '<div class="card">';
+                //    echo '<p>grafico</p>';
+                //echo '</div>';
+            //echo '</div>';
             echo '<div class="column">';
-                echo '<div class="card">';
-                    echo '<p>grafico</p>';
-                echo '</div>';
-            echo '</div>';
-            echo '<div class="column">';
-                echo '<div class="card">';
-                    echo '<p>agendamentos</p>';
+                echo '<div class="card" style="text-align: left;">';
+                    echo '<h2>Meus agendamentos</h2>';
+                        $getMinhasReunioes = "SELECT * FROM reuniao WHERE cliente = '$userId'";
+                        $resultMinhasReunioes = mysqli_query($con, $getMinhasReunioes);
+                        while ($row = mysqli_fetch_array($resultMinhasReunioes)){
+                            echo '<h4>Próxima reunião</h4>';
+                            echo '<p><span style="font-weight: bold;">Data:</span> '.$row['data'].'</p>';
+                        }
                 echo '</div>';
             echo '</div>';
         echo '</div>';
@@ -59,22 +73,36 @@
 
     if(mysqli_num_rows($result2) > 0 && mysqli_num_rows($result) == 0){
         if(strcmp($data2['cargo'], $cargo) === 0){
-            echo "<h1 style=\"font-size: 26px\">Bem vindo ao Dashboard ". $data2['nome']."</h1>";
+            echo "<h1 style=\"font-size: 26px; margin-left: 10px;\">Bem vindo, ". $data2['nome']."</h1>";
 
             echo '<div class="row">';
             echo '<div class="column">';
-                echo '<div class="card">';
-                    echo '<p>processo advogado</p>';
+                echo '<div class="card" style="text-align: left;">';
+                    echo '<h2 style="text-align: left;">Meus processos</h2>';
+                    $getMeusProcessos = "SELECT * FROM processo WHERE advogado = '$userId'";
+                    $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
+                    while ($row = mysqli_fetch_array($resultMeusProcessos)){
+                        echo '<h4>Último processo cadastrado</h4>';
+                        echo '<p><span style="font-weight: bold;">Número do processo:</span> '.$row['numero'].'</p>';
+                        echo '<p><span style="font-weight: bold;">Assunto:</span> '.$row['assunto'].'</p>';
+                        echo '<p><span style="font-weight: bold;">Última movimentação:</span> '.$row['movimentacao'].'</p>';
+                    }
                 echo '</div>';
                 echo '</div>';
+                //echo '<div class="column">';
+                  //  echo '<div class="card">';
+                    //    echo '<p>grafico</p>';
+                    //echo '</div>';
+                //echo '</div>';
                 echo '<div class="column">';
-                    echo '<div class="card">';
-                        echo '<p>grafico</p>';
-                    echo '</div>';
-                echo '</div>';
-                echo '<div class="column">';
-                    echo '<div class="card">';
-                        echo '<p>agendamentos</p>';
+                    echo '<div class="card" style="text-align: left;">';
+                        echo '<h2 style="text-align: left;">Meus agendamentos</h2>';
+                        $getMinhasReunioes = "SELECT * FROM reuniao WHERE advogado = '$userId'";
+                        $resultMinhasReunioes = mysqli_query($con, $getMinhasReunioes);
+                        while ($row = mysqli_fetch_array($resultMinhasReunioes)){
+                            echo '<h4>Próxima reunião</h4>';
+                            echo '<p><span style="font-weight: bold;">Data:</span> '.$row['data'].'</p>';
+                        }
                     echo '</div>';
                 echo '</div>';
             echo '</div>';
