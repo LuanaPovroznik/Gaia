@@ -29,10 +29,11 @@
                 echo "<div class=\"upper-line\">";
                 echo "</div>";
                 echo "<div class=\"container\">";
+                echo "<div>";
                 if($data['avatar'] != null){
                     echo '<img class="userAvatar" src="uploaded_img/'.$data['avatar'].'" id="myImg"><br><br>';
                 } else {
-                    echo '<img class="userAvatar" src="img/no-image.png" id="myImg"><br><br>';
+                    echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
                 }
                 echo '<label for="avatar" class="avatarButton" id="avatarUpload" name="avatar"> Escolha seu avatar </label>';
                 echo '<input name="avatar" id="avatar" type="file" accept="image/jpg, image/jpeg, image/png" style="display: none"/>';
@@ -69,7 +70,8 @@
                 echo "</div>";
                 
                 echo "</form>";
-                    
+                
+                echo "</div>";
                 echo "</div>";
             } else {
                 echo "Error find Client.";
@@ -87,15 +89,15 @@
             $image_folder = "uploaded_img/".$new_name;
             $insere = "UPDATE cliente SET 
              nome = '{$_POST['nome']}'
-            , login = '{$_POST['login']}'
-            , password = '$password'
+            , usuario = '{$_POST['login']}'
+            , senha = '$password'
             , avatar = '$new_name'
             WHERE id = $userId";
             $result_update = mysqli_query($con, $insere);
             if ($result_update){
                 move_uploaded_file($image_tmp_name, $image_folder);
                 echo "<h2> Perfil atualizado com sucesso!!!</h2>";
-                echo "<script>top.location.href=\"cliente_profile.php\"</script>";
+                echo "<script>top.location.href=\"profile.php\"</script>";
             } else {
                 echo "<h2> Não consegui atualizar!!!</h2>"; 
             }  
@@ -103,14 +105,14 @@
         } else{
             $insere = "UPDATE cliente SET 
              nome = '{$_POST['nome']}'
-            , login = '{$_POST['login']}'
-            , password = '$password'
+            , usuario = '{$_POST['login']}'
+            , senha = '$password'
             WHERE id = $userId";
             $result_update = mysqli_query($con, $insere);
             if ($result_update){
                 move_uploaded_file($image_tmp_name, $image_folder);
                 echo "<h2> Perfil atualizado com sucesso!!!</h2>";
-                echo "<script>top.location.href=\"cliente_profile.php\"</script>";
+                echo "<script>top.location.href=\"profile.php\"</script>";
             } else {
                 echo "<h2> Não consegui atualizar!!!</h2>"; 
             }  
