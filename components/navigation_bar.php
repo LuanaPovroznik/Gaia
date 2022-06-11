@@ -42,7 +42,7 @@
             echo '<a href="meus_processos.php">Meus processos</a>';
             echo '</div>';
             echo '<div class="topnav">';
-                echo '<span class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
+                echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
                 echo '<div class="dropdown">';
                     echo '<button class="dropbtn">';
                     if($data1['avatar'] != null){
@@ -72,7 +72,7 @@
                 echo '<a href="cadastre_se.php">Cadastrar novo usuário</a>';
                 echo '</div>';
                 echo '<div class="topnav">';
-                    echo '<span class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
+                    echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
                     echo '<div class="dropdown">';
                         echo '<button class="dropbtn">';
                         if($data2['avatar'] != null){
@@ -116,11 +116,13 @@
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.body.style.marginLeft = "250px";
+    document.getElementById("barMenu").style.display = "none";
     }
 
     function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.body.style.marginLeft = "0";
+        document.getElementById("barMenu").style.display = "block";
     }
 </script>
 </body>

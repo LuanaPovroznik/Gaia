@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9488e538-c5b8-40e0-bd26-ae60f5a801cf" name="Changes" comment="feat: cadastro de avatar e agendamento de reunião funcionando para advogados e clientes">
+    <list default="true" id="9488e538-c5b8-40e0-bd26-ae60f5a801cf" name="Changes" comment="alteração no banco pra validar agendamento de processos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cadastre_se.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/cadastre_se.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/novo_agendamento.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/novo_agendamento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/navigation_bar.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/navigation_bar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index_style2.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index_style2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/navigation_bar_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/navigation_bar_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +65,9 @@
       <workItem from="1654742629548" duration="8397000" />
       <workItem from="1654751198815" duration="277000" />
       <workItem from="1654779317642" duration="531000" />
+      <workItem from="1654781737865" duration="112000" />
+      <workItem from="1654894819254" duration="6495000" />
+      <workItem from="1654965437723" duration="1506000" />
     </task>
     <task id="LOCAL-00001" summary="feat: index e navbar de usuário não logados finalizada">
       <created>1654448432646</created>
@@ -112,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654751090310</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="alteração no banco pra validar agendamento de processos">
+      <created>1654781833473</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1654781833473</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +150,7 @@
     <MESSAGE value="feat: formulário de cadastro serve para os três níveis de usuário&#10;to do: níveis de usuário no formulário só podem aparecer para quem é advogado" />
     <MESSAGE value="wip: verificação funcionando (?)" />
     <MESSAGE value="feat: cadastro de avatar e agendamento de reunião funcionando para advogados e clientes" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: cadastro de avatar e agendamento de reunião funcionando para advogados e clientes" />
+    <MESSAGE value="alteração no banco pra validar agendamento de processos" />
+    <option name="LAST_COMMIT_MESSAGE" value="alteração no banco pra validar agendamento de processos" />
   </component>
 </project>

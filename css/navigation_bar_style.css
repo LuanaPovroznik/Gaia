@@ -89,11 +89,13 @@ body {
 .test{
   margin-top: 20px !important;
 }
+
 .dropdown {
   float: right;
   overflow: hidden;
   border-radius: 50%;
 }
+
 .dropdown .dropbtn {
   border-radius: 50%;
   font-size: 16px;
@@ -107,11 +109,6 @@ body {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-
-/* Add a red background color to navbar links on hover 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}*/
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {

@@ -12,6 +12,11 @@ html, body {
     text-align: center;
     background-color: var(--white);
 }
+
+#msgErro{
+    color: red;
+}
+
 .center{
     margin: auto;
     width: 800px;

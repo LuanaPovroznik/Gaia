@@ -39,7 +39,13 @@
         echo '<div class="column">';
             echo '<div class="card" style="text-align: left;">';
                 echo '<h2 style="text-align: left;">Meus processos</h2>';
-                $getMeusProcessos = "SELECT * FROM processo WHERE cliente = '$userId'";
+                    $getMyInfo = "SELECT * FROM cliente WHERE id = '$userId'";
+                    $resultMyInfo = mysqli_query($con, $getMyInfo);
+                    while ($row = mysqli_fetch_array($resultMyInfo)){
+                       @$clienteId = $row['id'];
+                    }
+
+                    $getMeusProcessos = "SELECT * FROM processo WHERE cliente = '$clienteId'";
                     $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
                     while ($row = mysqli_fetch_array($resultMeusProcessos)){
                         echo '<h4>Último processo ativo</h4>';
@@ -57,11 +63,33 @@
             echo '<div class="column">';
                 echo '<div class="card" style="text-align: left;">';
                     echo '<h2>Meus agendamentos</h2>';
-                        $getMinhasReunioes = "SELECT * FROM reuniao WHERE cliente = '$userId'";
+
+                        $getMyInfo = "SELECT * FROM cliente WHERE id = '$userId'";
+                        $resultMyInfo = mysqli_query($con, $getMyInfo);
+                        while ($row = mysqli_fetch_array($resultMyInfo)){
+                            @$clienteId = $row['id'];
+                        }
+
+                        $getMinhasReunioes = "SELECT * FROM reuniao WHERE cliente = '$clienteId' 
+                                                ORDER BY data ASC LIMIT 0, 10";
                         $resultMinhasReunioes = mysqli_query($con, $getMinhasReunioes);
+                        $hoje = date_create()->format('Y-m-d');
+                        echo '<script>console.log("'.$hoje.'")</script>';
                         while ($row = mysqli_fetch_array($resultMinhasReunioes)){
-                            echo '<h4>Próxima reunião</h4>';
-                            echo '<p><span style="font-weight: bold;">Data:</span> '.$row['data'].'</p>';
+                            if ($row['data'] < $hoje){
+                                $oldDate = date_create($row['data']);
+                                $novaData = date_format($oldDate, "d/M/y");
+                                echo '<p><span style="font-weight: bold; text-decoration: line-through">Data: '.$novaData.'</span> — já realizada.</p>';
+                            } else if ($row['data'] == $hoje){
+                                $oldDate = date_create($row['data']);
+                                $novaData = date_format($oldDate, "d/M/y");
+                                echo '<p style="font-weight: bold; color: green"><span style="font-weight: bold;">Data:</span> '.$novaData.' — hoje!</p>';
+                            } else {
+                                $oldDate = date_create($row['data']);
+                                $novaData = date_format($oldDate, "d/M/y");
+                                echo '<p style="color: grey"><span style="font-weight: bold;">Data:</span> '.$novaData.'</p>';
+                            }
+
                         }
                 echo '</div>';
             echo '</div>';
@@ -79,7 +107,19 @@
             echo '<div class="column">';
                 echo '<div class="card" style="text-align: left;">';
                     echo '<h2 style="text-align: left;">Meus processos</h2>';
-                    $getMeusProcessos = "SELECT * FROM processo WHERE advogado = '$userId'";
+                    $getMyInfo = "SELECT * FROM funcionario WHERE id = '$userId'";
+                    $resultMyInfo = mysqli_query($con, $getMyInfo);
+                    while ($row = mysqli_fetch_array($resultMyInfo)){
+                        @$advId = $row['id'];
+                    }
+
+                    $getMyInfoAdv = "SELECT * FROM advogado WHERE funcionario = '$advId'";
+                    $resultMyInfoAdv = mysqli_query($con, $getMyInfoAdv);
+                    while ($row = mysqli_fetch_array($resultMyInfoAdv)){
+                        @$advTableId = $row['id'];
+                    }
+
+                    $getMeusProcessos = "SELECT * FROM processo WHERE advogado = '$advTableId'";
                     $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
                     while ($row = mysqli_fetch_array($resultMeusProcessos)){
                         echo '<h4>Último processo cadastrado</h4>';
@@ -97,11 +137,36 @@
                 echo '<div class="column">';
                     echo '<div class="card" style="text-align: left;">';
                         echo '<h2 style="text-align: left;">Meus agendamentos</h2>';
-                        $getMinhasReunioes = "SELECT * FROM reuniao WHERE advogado = '$userId'";
+                        $getMyInfo = "SELECT * FROM funcionario WHERE id = '$userId'";
+                        $resultMyInfo = mysqli_query($con, $getMyInfo);
+                        while ($row = mysqli_fetch_array($resultMyInfo)){
+                            @$advId = $row['id'];
+                        }
+
+                        $getMyInfoAdv = "SELECT * FROM advogado WHERE funcionario = '$advId'";
+                        $resultMyInfoAdv = mysqli_query($con, $getMyInfoAdv);
+                        while ($row = mysqli_fetch_array($resultMyInfoAdv)){
+                            @$advTableId = $row['id'];
+                        }
+
+                        $getMinhasReunioes = "SELECT * FROM reuniao WHERE advogado = '$advTableId' ORDER BY data ASC";
                         $resultMinhasReunioes = mysqli_query($con, $getMinhasReunioes);
+                        $hoje = date_create()->format('Y-m-d');
+                        echo '<script>console.log("'.$hoje.'")</script>';
                         while ($row = mysqli_fetch_array($resultMinhasReunioes)){
-                            echo '<h4>Próxima reunião</h4>';
-                            echo '<p><span style="font-weight: bold;">Data:</span> '.$row['data'].'</p>';
+                            if ($row['data'] < $hoje){
+                                $oldDate = date_create($row['data']);
+                                $novaData = date_format($oldDate, "d/M/y");
+                                echo '<p><span style="font-weight: bold; text-decoration: line-through">Data: '.$novaData.'</span> — já realizada.</p>';
+                            } else if ($row['data'] == $hoje){
+                                $oldDate = date_create($row['data']);
+                                $novaData = date_format($oldDate, "d/M/y");
+                                echo '<p style="font-weight: bold; color: green"><span style="font-weight: bold;">Data:</span> '.$novaData.' — hoje!</p>';
+                            } else {
+                                $oldDate = date_create($row['data']);
+                                $novaData = date_format($oldDate, "d/M/y");
+                                echo '<p style="color: grey"><span style="font-weight: bold;">Data:</span> '.$novaData.'</p>';
+                            }
                         }
                     echo '</div>';
                 echo '</div>';
