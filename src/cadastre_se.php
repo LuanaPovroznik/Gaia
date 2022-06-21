@@ -1,6 +1,7 @@
 <?php
     session_start();
     include 'config.php';
+    include 'host.php';
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -55,12 +56,96 @@
                 <br><br>
                 <input type="password" placeholder="Senha" name="senhaUsuario" required>
                 <br> <br>
-                <input type="text" placeholder="CPF" name="cpfUsuario" required>
-                <br><br>
-                <input type="text" placeholder="Nome de usuário" name="nomeDeUsuario" required>
-                <br><br>
-                <input type="text" placeholder="Número OAB" name="oabAdvogado" id="oabAdvogado" style="display: none">
-                <br><br>
+                <input type="text" placeholder="CPF (apenas números)" name="cpfUsuario" id="cpfUsuario" required
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                       onfocusout="checkCPF('<?php echo $localUrl; ?>')">
+                <script>
+                    function checkCPF(url) {
+                        fetch(`${url}/api/checar_cpf.php`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                            },
+                            body: `cpfUsuario=${document.getElementById("cpfUsuario").value}`,
+                        }).then((response) => response.text())
+                            .then((res) => {
+                                document.getElementById("resultCPF").innerHTML = res;
+                                letRegisterCPF();
+                            });
+                    }
+
+                    function letRegisterCPF(){
+                        cpfAvaiable = document.getElementById("resultCPF").innerHTML.valueOf();
+
+                        if(cpfAvaiable.includes("Esse CPF já existe em nosso sistema.") ||
+                            cpfAvaiable === " Esse CPF já existe em nosso sistema." ||
+                                cpfAvaiable === "CPF Inválido." ||
+                                    cpfAvaiable == "Obrigatório CPF com 11 dígitos."){
+                            document.getElementById("registerButton").style.backgroundColor="grey";
+                            document.querySelector('#registerButton').disabled = true;
+                        } else {
+                            document.getElementById("registerButton").style.backgroundColor="mediumseagreen";
+                            document.querySelector('#registerButton').disabled = false;
+                        }
+                    }
+                </script>
+                <p id="resultCPF" style="font-style: italic; font-size: x-small; color: red;"></p>
+                <input type="text" placeholder="Nome de usuário" name="nomeDeUsuario" id="nomeDeUsuario" required onfocusout="checkUser('<?php echo $localUrl; ?>')">
+                <script>
+                    function checkUser(url) {
+                        fetch(`${url}/api/checar_usuario.php`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                            },
+                            body: `nomeDeUsuario=${document.getElementById("nomeDeUsuario").value}`,
+                        }).then((response) => response.text())
+                            .then((res) => {
+                                document.getElementById("result").innerHTML = res;
+                                letRegister();
+                            });
+                    }
+
+                    function letRegister(){
+                        userAvaiable = document.getElementById("result").innerHTML.valueOf();
+                        if(userAvaiable === "Esse nome de usuário já existe em nosso sistema."){
+                            document.getElementById("registerButton").style.backgroundColor="grey";
+                            document.querySelector('#registerButton').disabled = true;
+                        } else {
+                            document.getElementById("registerButton").style.backgroundColor="mediumseagreen";
+                            document.querySelector('#registerButton').disabled = false;
+                        }
+                    }
+                </script>
+                <p id="result" style="font-style: italic; font-size: x-small; color: red"></p>
+                <input type="text" placeholder="Número OAB" name="oabAdvogado" id="oabAdvogado" style="display: none" required onfocusout="checkOAB('<?php echo $localUrl; ?>')">
+                <script>
+                    function checkOAB(url) {
+                        fetch(`${url}/api/checar_oab.php`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                            },
+                            body: `oabAdvogado=${document.getElementById("oabAdvogado").value}`,
+                        }).then((response) => response.text())
+                            .then((res) => {
+                                document.getElementById("resultOAB").innerHTML = res;
+                                letRegisterOAB();
+                            });
+                    }
+
+                    function letRegisterOAB(){
+                        oabAvaiable = document.getElementById("resultOAB").innerHTML.valueOf();
+                        if(oabAvaiable === "Esse número de OAB já existe em nosso sistema."){
+                            document.getElementById("registerButton").style.backgroundColor="grey";
+                            document.querySelector('#registerButton').disabled = true;
+                        } else {
+                            document.getElementById("registerButton").style.backgroundColor="mediumseagreen";
+                            document.querySelector('#registerButton').disabled = false;
+                        }
+                    }
+                </script>
+                <p id="resultOAB" style="font-style: italic; font-size: x-small; color: red"></p>
                 <input type="submit" value="Cadastre-se" class="loginButton" name="registerButton" id="registerButton">
                 <?php 
                     if (!isset($_SESSION['usuario']) || !isset($_SESSION['id'])) {
@@ -154,7 +239,7 @@
                 echo '<script>errorModal()</script>';
             }
         } else if (@$cargoUsuario == "secretario"){
-            $sql = "INSERT INTO funcionario (nome, cargo, usuario, senha, avatar)
+            $sql = "INSERT INTO funcionario (cpf, nome, cargo, usuario, senha, avatar)
                         VALUES ('$nomeUsuario', '$cargoUsuario', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
             if (mysqli_query($con, $sql)) {
                 echo '<script>novoUsuario()</script>';
@@ -163,7 +248,7 @@
                 echo '<script>errorModal()</script>';
             }
         } else {
-            $sql = "INSERT INTO funcionario (nome, cargo, oab, usuario, senha, avatar)
+            $sql = "INSERT INTO funcionario (cpf, nome, cargo, oab, usuario, senha, avatar)
                         VALUES ('$nomeUsuario', '$cargoUsuario', '$oabAdvogado', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
             $result = mysqli_query($con, $sql);
 
