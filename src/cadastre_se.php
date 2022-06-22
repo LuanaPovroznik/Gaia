@@ -69,18 +69,16 @@
                             body: `cpfUsuario=${document.getElementById("cpfUsuario").value}`,
                         }).then((response) => response.text())
                             .then((res) => {
-                                document.getElementById("resultCPF").innerHTML = res;
-                                letRegisterCPF();
+                                letRegisterCPF(res);
                             });
                     }
 
-                    function letRegisterCPF(){
-                        cpfAvaiable = document.getElementById("resultCPF").innerHTML.valueOf();
-
+                    function letRegisterCPF(cpfAvaiable){
                         if(cpfAvaiable.includes("Esse CPF já existe em nosso sistema.") ||
                             cpfAvaiable === " Esse CPF já existe em nosso sistema." ||
                                 cpfAvaiable === "CPF Inválido." ||
                                     cpfAvaiable == "Obrigatório CPF com 11 dígitos."){
+                            document.getElementById("resultCPF").innerHTML = "CPF Inválido ou já existente.";
                             document.getElementById("registerButton").style.backgroundColor="grey";
                             document.querySelector('#registerButton').disabled = true;
                         } else {
