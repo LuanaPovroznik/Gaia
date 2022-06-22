@@ -15,6 +15,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/navigation_bar_style.css">
+        <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
     </head>
 <body>
     <?php
@@ -36,26 +37,22 @@
         if(mysqli_num_rows($result) > 0 && mysqli_num_rows($result2) == 0){
             echo '<div id="mySidenav" class="sidenav">';
             echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
+            if($data1['avatar'] != null){
+                echo '<img style="display:flex;" class="userAvatar" src="../src/uploaded_img/'.$data1['avatar'].'" id="myImg"><br><br>';
+            } else {
+                echo '<img style="display:flex;" class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
+            }
             echo '<a href="dashboard.php">Dashboard</a>';
             echo '<a href="novo_agendamento.php">Novo agendamento</a>';
             echo '<a href="meus_agendamentos.php">Meus agendamentos</a>';
             echo '<a href="meus_processos.php">Meus processos</a>';
+            echo '<a href="../src/profile.php">Meu perfil</a>';
             echo '</div>';
             echo '<div class="topnav">';
-                echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
-                echo '<div class="dropdown">';
-                    echo '<button class="dropbtn">';
-                    if($data1['avatar'] != null){
-                        echo '<img class="userAvatar" src="../src/uploaded_img/'.$data1['avatar'].'" id="myImg"><br><br>';
-                    } else {
-                        echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
-                    }
-                    echo '</button>';
-                    echo '<div class="dropdown-content">';
-                    echo '<a href="../src/profile.php">Meu perfil</a>';
-                    echo '<a href="../src/logout.php">Sair</a>';
-                    echo '</div>';
-                echo '</div>';  
+                echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px; margin-bottom: 20px" onclick="openNav()">&#9776;</span>';
+                echo '<a href="../src/logout.php">';
+                echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: right; margin-left: 10px; margin-right: 10px; margin-bottom: 20px"">&#10005;</span>';
+                echo '</a>';
             echo '</div>';
         }
 
@@ -64,6 +61,11 @@
             if(strcmp($data2['cargo'], $cargo) === 0){
                 echo '<div id="mySidenav" class="sidenav">';
                 echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
+                if($data2['avatar'] != null){
+                    echo '<img style="display:flex;" class="userAvatar" src="../src/uploaded_img/'.$data2['avatar'].'" id="myImg"><br><br>';
+                } else {
+                    echo '<img style="display:flex;" class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
+                }
                 echo '<a href="dashboard.php">Dashboard</a>';
                 echo '<a href="novo_agendamento.php">Novo agendamento</a>';
                 echo '<a href="cadastro_processo.php">Cadastro de processos</a>';
@@ -71,43 +73,30 @@
                 echo '<a href="cadastre_se.php">Cadastrar novo usuário</a>';
                 echo '<a href="relatorio_processos.php">Relatório de Processos</a>';
                 echo '<a href="relatorio_agendamento.php">Relatório de Agendamentos</a>';
+                echo '<a href="../src/profile.php">Meu perfil</a>';
                 echo '</div>';
                 echo '<div class="topnav">';
                     echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
-                    echo '<div class="dropdown">';
-                        echo '<button class="dropbtn">';
-                        if($data2['avatar'] != null){
-                            echo '<img class="userAvatar" src="../src/uploaded_img/'.$data2['avatar'].'" id="myImg"><br><br>';
-                        } else {
-                            echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
-                        }
-                        echo '</button>';
-                        echo '<div class="dropdown-content">';
-                        echo '<a href="../src/profile.php">Meu perfil</a>';
-                        echo '<a href="../src/logout.php">Sair</a>';
-                        echo '</div>';
-                    echo '</div>';  
+                    echo '<a href="../src/logout.php">';
+                    echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: right; margin-left: 10px; margin-right: 10px; margin-bottom: 20px"">&#10005;</span>';
+                    echo '</a>';                        
                 echo '</div>';
             } else{
                 echo '<div id="mySidenav" class="sidenav">';
                 echo '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>';
+                if($data2['avatar'] != null){
+                    echo '<img class="userAvatar" src="../src/uploaded_img/'.$data2['avatar'].'" id="myImg"><br><br>';
+                } else {
+                    echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
+                }
                 echo '<a href="#">Agendamentos</a>';
+                echo '<a href="../src/profile.php">Meu perfil</a>';
                 echo '</div>';
                 echo '<div class="topnav">';
                     echo '<span class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';
-                    echo '<div class="dropdown">';
-                        echo '<button class="dropbtn">';
-                        if($data2['avatar'] != null){
-                            echo '<img class="userAvatar" src="../src/uploaded_img/'.$data2['avatar'].'" id="myImg"><br><br>';
-                        } else {
-                            echo '<img class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
-                        }
-                        echo '</button>';
-                        echo '<div class="dropdown-content">';
-                        echo '<a href="../src/profile.php">Meu perfil</a>';
-                        echo '<a href="../src/logout.php">Sair</a>';
-                        echo '</div>';
-                    echo '</div>';  
+                    echo '<a href="../src/logout.php">';
+                    echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: right; margin-left: 10px; margin-right: 10px; margin-bottom: 20px"">&#10005;</span>';
+                    echo '</a>'; 
                 echo '</div>';
             }
         }
