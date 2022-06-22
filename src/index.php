@@ -12,10 +12,19 @@
     if(isset($_GET['msg'])){
 
         $msg = $_GET['msg'];
+
         if($msg == "error"){
             echo '<script>
                 setInterval(function (){
                     document.getElementById("msgErro").innerHTML = "Erro: credenciais de login incorretas.";
+                }, 1000);
+               </script>';
+        }
+
+        if($msg == "logout"){
+            echo '<script>
+                setInterval(function (){
+                    document.getElementById("msgErro").innerHTML = "Você saiu. Volte sempre!";
                 }, 1000);
                </script>';
         }
@@ -60,11 +69,13 @@
                 <input type="submit" value="Login" class="loginButton" name="loginButton">
                 <a href="cadastre_se.php"><p class="registerLink">Não possui conta? Cadastre-se</p></a>
             </form>
-            <?php if(@$msg == "error"){
-                echo '<footer style="margin-top: 30%; font-size: small; font-family: Montserrat, sans-serif; color: darkgrey"><h4>Luana Povroznik & Matheus Portes</h4></footer>';
-            } else {
-                echo '<footer style="margin-top: 40%; font-size: small; font-family: Montserrat, sans-serif; color: darkgrey"><h4>Luana Povroznik & Matheus Portes</h4></footer>';
-            }?>
+            <?php
+                if(@$msg == "error" || @$msg == "logout"){
+                    echo '<footer style="margin-top: 30%; font-size: small; font-family: Montserrat, sans-serif; color: darkgrey"><h4>Luana Povroznik & Matheus Portes</h4></footer>';
+                } else {
+                    echo '<footer style="margin-top: 40%; font-size: small; font-family: Montserrat, sans-serif; color: darkgrey"><h4>Luana Povroznik & Matheus Portes</h4></footer>';
+                }
+            ?>
 
         </div>
     </div>
