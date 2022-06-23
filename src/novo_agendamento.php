@@ -28,6 +28,7 @@
 <div class="container">
     <div class="center">
         <div class="right">
+            <a href="dashboard.php" style="text-align: left;"><p class="registerLink" style="margin-left: 15px">&#8592 Voltar</p></a>
             <form action="novo_agendamento.php" method="post">
                 <h2 style="font-family: 'Asap Condensed Medium'; font-weight: normal">Novo agendamento</h2>
                 <?php if (@$userRole != "advogado"){?>

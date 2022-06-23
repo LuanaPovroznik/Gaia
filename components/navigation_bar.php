@@ -42,11 +42,11 @@
             } else {
                 echo '<img style="display:flex;" class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
             }
+            echo '<a href="../src/profile.php">Meu perfil</a>';
             echo '<a href="dashboard.php">Dashboard</a>';
             echo '<a href="novo_agendamento.php">Novo agendamento</a>';
             echo '<a href="meus_agendamentos.php">Meus agendamentos</a>';
             echo '<a href="meus_processos.php">Meus processos</a>';
-            echo '<a href="../src/profile.php">Meu perfil</a>';
             echo '</div>';
             echo '<div class="topnav">';
                 echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px; margin-bottom: 20px" onclick="openNav()">&#9776;</span>';
@@ -66,14 +66,14 @@
                 } else {
                     echo '<img style="display:flex;" class="userAvatar" src="../img/no-image.png" id="myImg"><br><br>';
                 }
+                echo '<a href="../src/profile.php">Meu perfil</a>';
                 echo '<a href="dashboard.php">Dashboard</a>';
                 echo '<a href="novo_agendamento.php">Novo agendamento</a>';
-                echo '<a href="cadastro_processo.php">Cadastro de processos</a>';
-                echo '<a href="cadastro_vara.php">Nova vara judiciária</a>';
-                echo '<a href="cadastre_se.php">Cadastrar novo usuário</a>';
+                echo '<a href="cadastro_processo.php">Cadastrar processo</a>';
+                echo '<a href="cadastre_se.php">Cadastrar usuário</a>';
+                echo '<a href="cadastro_vara.php">Cadastrar vara judiciária</a>';
                 echo '<a href="relatorio_processos.php">Relatório de Processos</a>';
                 echo '<a href="relatorio_agendamento.php">Relatório de Agendamentos</a>';
-                echo '<a href="../src/profile.php">Meu perfil</a>';
                 echo '</div>';
                 echo '<div class="topnav">';
                     echo '<span id="barMenu" class="test" style="font-size:30px; color: snow; cursor:pointer; float: left; margin-left: 10px" onclick="openNav()">&#9776;</span>';

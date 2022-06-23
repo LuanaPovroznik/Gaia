@@ -16,6 +16,7 @@
 <div class="container">
     <div class="center">
         <div class="right">
+            <a href="dashboard.php" style="text-align: left;"><p class="registerLink" style="margin-left: 15px">&#8592 Voltar</p></a>
             <form action="cadastro_processo.php" method="post">
                 <h2 style="font-family: 'Asap Condensed Medium'; font-weight: normal">Cadastro de Processo</h2>
                 <input type="text" placeholder="Número do processo" name="numero">

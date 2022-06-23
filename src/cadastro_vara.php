@@ -16,6 +16,7 @@
 <div class="container">
     <div class="center">
         <div class="right">
+            <a href="dashboard.php" style="text-align: left;"><p class="registerLink" style="margin-left: 15px">&#8592 Voltar</p></a>
             <form action="cadastro_vara.php" method="post">
                 <h2 style="font-family: 'Asap Condensed Medium'; font-weight: normal">Cadastro de vara judiciária</h2>
                 <input type="text" placeholder="Nome da vara judiciária" name="vara">

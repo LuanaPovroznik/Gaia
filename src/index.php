@@ -25,7 +25,7 @@
             echo '<script>
                 setInterval(function (){
                     document.getElementById("msgErro").innerHTML = "Você saiu. Volte sempre!";
-                }, 1000);
+                }, 100);
                </script>';
         }
     }
