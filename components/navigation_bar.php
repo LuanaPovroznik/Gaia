@@ -68,6 +68,8 @@
                 }
                 echo '<a href="../src/profile.php">Meu perfil</a>';
                 echo '<a href="dashboard.php">Dashboard</a>';
+                echo '<a href="meus_processos.php">Meus processos</a>';
+                echo '<a href="meus_agendamentos.php">Meus agendamentos</a>';
                 echo '<a href="novo_agendamento.php">Novo agendamento</a>';
                 echo '<a href="cadastro_processo.php">Cadastrar processo</a>';
                 echo '<a href="cadastre_se.php">Cadastrar usuário</a>';

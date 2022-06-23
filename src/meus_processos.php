@@ -82,47 +82,36 @@
 
     if(mysqli_num_rows($result2) > 0 && mysqli_num_rows($result) == 0){
         if(strcmp($data2['cargo'], $cargo) === 0){
-            $sqlA = "SELECT * FROM processo WHERE advogado = {$data3['id']}";
-            $resultA = mysqli_query($con, $sqlA);
-                if($resultA != null){
-                    while($row = mysqli_fetch_array($resultA)){
-                        echo "<div class=\"card\" style=\"text-align: left;  margin-bottom: 20px;\">"; 
-                            $processoId = $row['id'];
-                            echo "<input type=\"hidden\" value=\"$processoId\" name=\"potionId\">";
-                            $numero =$row['numero'];
-                            echo "<p> <span>Numero do processo: </span> ".$numero."</p>";
-                            $assunto =$row['assunto'];
-                            echo "<p> <span>Assunto: </span> ".$assunto."</p>";;
-                            $movimentacao =$row['movimentacao'];
-                            echo "<p> <span>Movimentação: </span> ".$movimentacao."</p>";
-                            @$clienteId = $row['cliente'];
-                            @$getClienteId = mysqli_query($con, "SELECT nome FROM cliente WHERE id = $clienteId");
-                            while(@$resultClienteNome = mysqli_fetch_array($getClienteId)){
-                                @$nomeCliente = @$resultClienteNome['nome'];
-                            }
-                            echo "<p> <span>Cliente: </span> ".$nomeCliente."</p>";
-                            @$varaId = $row['vara'];
-                            @$getVaraId = mysqli_query($con, "SELECT nome FROM vara WHERE id = $varaId");
-                            while(@$resultVaraNome = mysqli_fetch_array($getVaraId)){
-                                @$nomeVara = @$resultVaraNome['nome'];
-                            }
-                            echo "<p> <span>Vara: </span> ".$nomeVara."</p>";
-                            @$advogadoId = $row['advogado'];
-                            @$getAdvogadoId = mysqli_query($con, "SELECT nome FROM advogado WHERE id = $advogadoId");
-                            while(@$resultAdvogadoNome = mysqli_fetch_array($getAdvogadoId)){
-                                @$nomeAdvogado = @$resultAdvogadoNome['nome'];
-                            }
-                            echo "<p> <span>Advogado: </span> ".$nomeAdvogado."</p>";
-                        echo "</div>";
+   
+                echo '<div class="card" style="text-align: left;">';
+                    echo '<h2 style="text-align: left;">Meus processos</h2>';
+                    $getMyInfo = "SELECT * FROM funcionario WHERE id = '$userId'";
+                    $resultMyInfo = mysqli_query($con, $getMyInfo);
+                    while ($row = mysqli_fetch_array($resultMyInfo)){
+                        @$advId = $row['id'];
                     }
-                }
+
+                    $getMyInfoAdv = "SELECT * FROM advogado WHERE funcionario = '$advId'";
+                    $resultMyInfoAdv = mysqli_query($con, $getMyInfoAdv);
+                    while ($row = mysqli_fetch_array($resultMyInfoAdv)){
+                        @$advTableId = $row['id'];
+                    }
+
+                    $getMeusProcessos = "SELECT * FROM processo WHERE advogado = '$advTableId'";
+                    $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
+                    while ($row = mysqli_fetch_array($resultMeusProcessos)){
+                        echo '<h4>Último processo cadastrado</h4>';
+                        echo '<p><span style="font-weight: bold;">Número do processo:</span> '.$row['numero'].'</p>';
+                        echo '<p><span style="font-weight: bold;">Assunto:</span> '.$row['assunto'].'</p>';
+                        echo '<p><span style="font-weight: bold;">Última movimentação:</span> '.$row['movimentacao'].'</p>';
+                    }
+          
+   
         }
     }
-   
-       
   
    
 ?>
-<a href="dashboard.php"><input type="button" class="backLogin" value="Ir para tela inicial &#8594;"></a>
+<a href="dashboard.php" style="margin: auto;"><input type="button" class="backLogin" value="Ir para tela inicial &#8594;"></a>
 </body>
 </html>
