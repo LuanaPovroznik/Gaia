@@ -122,8 +122,8 @@
         echo $clienteId;
         echo $varaId;
         echo $advogadoId;
-        $sql = "INSERT INTO processo (numero, assunto, movimentacao, cliente, vara, advogado) 
-            VALUES ('$numero', '$assunto', '$movimentacao', '$clienteId', '$varaId', '$advogadoId')";
+        $sql = "INSERT INTO processo (numero, assunto, movimentacao, cliente, vara, advogado, status) 
+            VALUES ('$numero', '$assunto', '$movimentacao', '$clienteId', '$varaId', '$advogadoId', 0)";
 
 
         if (mysqli_query($con, $sql)) {

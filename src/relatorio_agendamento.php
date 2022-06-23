@@ -90,7 +90,6 @@
                 <th onclick="sortTable(0)">Data  &#8645</th>
                 <th onclick="sortTable(1)">Cliente  &#8645</th>
                 <th onclick="sortTable(2)">Advogado  &#8645</th>
-                <th onclick="sortTable(3)">Processo  &#8645</th>
             </thead>
             <tbody>
                 <?php if(!empty($agendamentos)) { ?>
@@ -118,7 +117,6 @@
                                 }
                             ?>
                             <td><?php echo @$advogadoNome; ?></td>
-                            <td><?php echo @$processoNumero; ?></td>
                         </tr>
                     <?php } ?>
                 <?php } ?>
@@ -159,10 +157,10 @@
                 ?>
             </div><br>
         </table>
-        <form action="#" method="POST" style="width: 97%; align-content: center; justify-content: center">
-            <a href="agendamentos.txt" download><button value="Exportar arquivo" name="botao" class="exportButton" style="float: right; margin: 10px">Exportar arquivo</button></a>
-            <a href="#" target="_blank"><input type="button" value="Imprimir" class="printButton" style="float: right; margin: 10px"/>
-        </form>
+<!--        <form action="#" method="POST" style="width: 97%; align-content: center; justify-content: center">-->
+<!--            <a href="agendamentos.txt" download><button value="Exportar arquivo" name="botao" class="exportButton" style="float: right; margin: 10px">Exportar arquivo</button></a>-->
+<!--            <a href="#" target="_blank"><input type="button" value="Imprimir" class="printButton" style="float: right; margin: 10px"/>-->
+<!--        </form>-->
         <script>
             const myFunction = () => {
                 const trs = document.querySelectorAll('#myTable tr:not(.header)')

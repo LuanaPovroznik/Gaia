@@ -100,7 +100,7 @@
                     $image_size = $_FILES['avatar']['size'];
                     $image_tmp_name = $_FILES['avatar']['tmp_name'];
                     $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-                    $new_name = $_POST['nome'].'.'.$extension;       
+                    $new_name = $_POST['login'].'.'.$extension;
                     $image_folder = "uploaded_img/".$new_name;
                     $insere = "UPDATE cliente SET 
                     nome = '{$_POST['nome']}'
@@ -209,7 +209,7 @@
                         $image_size = $_FILES['avatar']['size'];
                         $image_tmp_name = $_FILES['avatar']['tmp_name'];
                         $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-                        $new_name = $_POST['nome'].'.'.$extension;       
+                        $new_name = $_POST['login'].'.'.$extension;
                         $image_folder = "uploaded_img/".$new_name;
                         $insere = "UPDATE funcionario SET 
                         nome = '{$_POST['nome']}'

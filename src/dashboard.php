@@ -48,10 +48,10 @@
                     $getMeusProcessos = "SELECT * FROM processo WHERE cliente = '$clienteId'";
                     $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
                     while ($row = mysqli_fetch_array($resultMeusProcessos)){
-                        echo '<h4>Último processo ativo</h4>';
                         echo '<p><span style="font-weight: bold;">Número do processo:</span> '.$row['numero'].'</p>';
                         echo '<p><span style="font-weight: bold;">Assunto:</span> '.$row['assunto'].'</p>';
                         echo '<p><span style="font-weight: bold;">Última movimentação:</span> '.$row['movimentacao'].'</p>';
+                        echo '<p><span style="font-weight: bold;">--------------------------------------------</span> </p>';
                     }
             echo '</div>';
             echo '</div>';
@@ -122,10 +122,10 @@
                     $getMeusProcessos = "SELECT * FROM processo WHERE advogado = '$advTableId'";
                     $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
                     while ($row = mysqli_fetch_array($resultMeusProcessos)){
-                        echo '<h4>Último processo cadastrado</h4>';
                         echo '<p><span style="font-weight: bold;">Número do processo:</span> '.$row['numero'].'</p>';
                         echo '<p><span style="font-weight: bold;">Assunto:</span> '.$row['assunto'].'</p>';
                         echo '<p><span style="font-weight: bold;">Última movimentação:</span> '.$row['movimentacao'].'</p>';
+                        echo '<p><span style="font-weight: bold;">--------------------------------------------</span> </p>';
                     }
                 echo '</div>';
                 echo '</div>';

@@ -12,7 +12,7 @@
     $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
     $inicio = ($quantidade * $pagina) - $quantidade;
 
-    $sql = "SELECT numero, movimentacao, cliente, vara, advogado FROM processo ORDER BY data ASC LIMIT $inicio, $quantidade";
+    $sql = "SELECT numero, movimentacao, cliente, vara, advogado FROM processo ORDER BY movimentacao ASC LIMIT $inicio, $quantidade";
     $result = mysqli_query($con, $sql);
     echo '<script> console.log(" na pagina")</script>';
     $processos = [];
@@ -91,7 +91,7 @@
          class="searchBar">
         <table id="myTable" style="width: 100%; align-content: center; justify-content: center; text-align: center">
             <thead>
-                <th onclick="sortTable(0)">Numero  &#8645</th>
+                <th onclick="sortTable(0)">Número processo  &#8645</th>
                 <th onclick="sortTable(1)">Movimentação  &#8645</th>
                 <th onclick="sortTable(2)">Cliente  &#8645</th>
                 <th onclick="sortTable(3)">Vara  &#8645</th>
@@ -165,8 +165,8 @@
             </div><br>
         </table>
         <form action="#" method="POST" style="width: 97%; align-content: center; justify-content: center">
-            <a href="processos.txt" download><button value="Exportar arquivo" name="botao" class="exportButton" style="float: right; margin: 10px">Exportar arquivo</button></a>
-            <a href="#" target="_blank"><input type="button" value="Imprimir" class="printButton" style="float: right; margin: 10px"/>
+<!--            <a href="processos.txt" download><button value="Exportar arquivo" name="botao" class="exportButton" style="float: right; margin: 10px">Exportar arquivo</button></a>-->
+<!--            <a href="#" target="_blank"><input type="button" value="Imprimir" class="printButton" style="float: right; margin: 10px"/>-->
         </form>
         <script>
             const myFunction = () => {

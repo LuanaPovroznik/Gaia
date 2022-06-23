@@ -100,10 +100,12 @@
                     $getMeusProcessos = "SELECT * FROM processo WHERE advogado = '$advTableId'";
                     $resultMeusProcessos = mysqli_query($con, $getMeusProcessos);
                     while ($row = mysqli_fetch_array($resultMeusProcessos)){
-                        echo '<h4>Último processo cadastrado</h4>';
+//                        echo '<h4>Último processo cadastrado</h4>';
                         echo '<p><span style="font-weight: bold;">Número do processo:</span> '.$row['numero'].'</p>';
                         echo '<p><span style="font-weight: bold;">Assunto:</span> '.$row['assunto'].'</p>';
                         echo '<p><span style="font-weight: bold;">Última movimentação:</span> '.$row['movimentacao'].'</p>';
+//                        echo '<input type="button" class="backLogin" value="Encerrar vínculo" style="background-color: #4D0916; width: 120px;">';
+                        echo '<p><span style="font-weight: bold;">--------------------------------------------</span> </p>';
                     }
           
    

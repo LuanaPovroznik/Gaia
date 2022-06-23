@@ -116,7 +116,7 @@
                     }
                 </script>
                 <p id="result" style="font-style: italic; font-size: x-small; color: red"></p>
-                <input type="text" placeholder="Número OAB" name="oabAdvogado" id="oabAdvogado" style="display: none" required onfocusout="checkOAB('<?php echo $localUrl; ?>')">
+                <input type="text" placeholder="Número OAB" name="oabAdvogado" id="oabAdvogado" style="display: none" onfocusout="checkOAB('<?php echo $localUrl; ?>')">
                 <script>
                     function checkOAB(url) {
                         fetch(`${url}/api/checar_oab.php`, {
@@ -238,7 +238,7 @@
             }
         } else if (@$cargoUsuario == "secretario"){
             $sql = "INSERT INTO funcionario (cpf, nome, cargo, usuario, senha, avatar)
-                        VALUES ('$nomeUsuario', '$cargoUsuario', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
+                        VALUES ('$cpfUsuario', '$nomeUsuario', '$cargoUsuario', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
             if (mysqli_query($con, $sql)) {
                 echo '<script>novoUsuario()</script>';
             } else {
@@ -247,7 +247,7 @@
             }
         } else {
             $sql = "INSERT INTO funcionario (cpf, nome, cargo, oab, usuario, senha, avatar)
-                        VALUES ('$nomeUsuario', '$cargoUsuario', '$oabAdvogado', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
+                        VALUES ('$cpfUsuario', '$nomeUsuario', '$cargoUsuario', '$oabAdvogado', '$nomeDeUsuario', '$senhaUsuario', '$avatarCliente')";
             $result = mysqli_query($con, $sql);
 
             $getId = "SELECT id FROM funcionario WHERE usuario = '$nomeDeUsuario'";

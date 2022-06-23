@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9488e538-c5b8-40e0-bd26-ae60f5a801cf" name="Changes" comment="Texto padronizado para validação do CPF existente/inválido.">
+    <list default="true" id="9488e538-c5b8-40e0-bd26-ae60f5a801cf" name="Changes" comment="Botão &quot;Voltar&quot; nas telas de cadastro dentro do sistema.&#10;O texto &quot;Você saiu. Volte sempre&quot; aparece mais rápido agora na página de login após logout do usuário.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navigation_bar.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/navigation_bar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/cadastre_se_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/cadastre_se_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/relatorios/processos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/relatorios/processos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cadastre_se.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/cadastre_se.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cadastro_processo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/cadastro_processo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cadastro_vara.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/cadastro_vara.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/novo_agendamento.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/novo_agendamento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/meus_processos.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/meus_processos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/relatorio_agendamento.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/relatorio_agendamento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/relatorio_processos.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/relatorio_processos.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +71,8 @@
       <workItem from="1654781737865" duration="112000" />
       <workItem from="1654894819254" duration="6495000" />
       <workItem from="1654965437723" duration="1506000" />
-      <workItem from="1656011139602" duration="1189000" />
+      <workItem from="1656011139602" duration="1308000" />
+      <workItem from="1656017341090" duration="5616000" />
     </task>
     <task id="LOCAL-00001" summary="feat: index e navbar de usuário não logados finalizada">
       <created>1654448432646</created>
@@ -148,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655858833929</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Botão &quot;Voltar&quot; nas telas de cadastro dentro do sistema.&#10;O texto &quot;Você saiu. Volte sempre&quot; aparece mais rápido agora na página de login após logout do usuário.">
+      <created>1656012411115</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656012411115</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +187,7 @@
     <MESSAGE value="pasta api (checar usuario, oab e cpf)" />
     <MESSAGE value="Validações cpf, oab e nome de usuário.&#10;Adicionado arquivo &quot;host&quot;.&#10;Logout agora aparece na tela de login com uma mensagem &quot;Volte sempre&quot;" />
     <MESSAGE value="Texto padronizado para validação do CPF existente/inválido." />
-    <option name="LAST_COMMIT_MESSAGE" value="Texto padronizado para validação do CPF existente/inválido." />
+    <MESSAGE value="Botão &quot;Voltar&quot; nas telas de cadastro dentro do sistema.&#10;O texto &quot;Você saiu. Volte sempre&quot; aparece mais rápido agora na página de login após logout do usuário." />
+    <option name="LAST_COMMIT_MESSAGE" value="Botão &quot;Voltar&quot; nas telas de cadastro dentro do sistema.&#10;O texto &quot;Você saiu. Volte sempre&quot; aparece mais rápido agora na página de login após logout do usuário." />
   </component>
 </project>
